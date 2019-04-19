@@ -1,0 +1,116 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Re: Importing -->
+<!--X-From: Pat <pat@pat.net> -->
+<!--X-Date: Sat, 13 Nov 1999 01:35:05 &#45;0600 -->
+<!--X-Message-Id: 19991113013504.56827@pat.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 01BF2D01.60C2F570.ted.eiles@learningmachines.com -->
+<!--X-Reference: 01BF2D01.60C2F570.ted.eiles@learningmachines.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Importing</TITLE>
+<LINK REV="made" HREF="mailto:pat@pat.net">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00029.html">Date Prev</A>][<A HREF="msg00010.html">Date Next</A>][<A HREF="msg00009.html">Thread Prev</A>][<A HREF="msg00030.html">Thread Next</A>][<A HREF="maillist.html#00001">Date Index</A>][<A HREF="threads.html#00001">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Re: Importing</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: "<A HREF="mailto:ted.eiles@learningmachines.com">ted.eiles@learningmachines.com</A>" &lt;<A HREF="mailto:ted.eiles@learningmachines.com">ted.eiles@learningmachines.com</A>&gt;,"<A HREF="mailto:users@beanshell.org">users@beanshell.org</A>" &lt;<A HREF="mailto:users@beanshell.org">users@beanshell.org</A>&gt;</LI>
+<LI><em>Subject</em>: Re: Importing</LI>
+<LI><em>From</em>: Pat &lt;<A HREF="mailto:pat@pat.net">pat@pat.net</A>&gt;</LI>
+<LI><em>Date</em>: Sat, 13 Nov 1999 01:35:05 -0600</LI>
+<LI><em>Approved</em>: pat@pat.net</LI>
+<LI><em>Cc</em>: <A HREF="mailto:developers@beanshell.org">developers@beanshell.org</A></LI>
+<LI><em>In-Reply-To</em>: &lt;<A HREF="msg00009.html">01BF2D01.60C2F570.ted.eiles@learningmachines.com</A>&gt;; from Ted Eiles on Fri, Nov 12, 1999 at 11:30:48AM -0500</LI>
+<LI><em>Mail-Followup-To</em>: "ted.eiles@learningmachines.com" &lt;ted.eiles@learningmachines.com&gt;,"users@beanshell.org" &lt;users@beanshell.org&gt;,developers@beanshell.org</LI>
+<LI><em>References</em>: &lt;<A HREF="msg00009.html">01BF2D01.60C2F570.ted.eiles@learningmachines.com</A>&gt;</LI>
+<LI><em>Reply-To</em>: <A HREF="mailto:pat@pat.net">pat@pat.net</A></LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Fri, Nov 12, 1999 at 11:30:48AM -0500, Ted Eiles wrote:
+&gt; 
+&gt; What is the best way to add to defaultImports?
+&gt; 
+&gt; Add classes to defaultImports file and update JAR file? (my current procedure)
+&gt; Add packages to javaPackages? (I don't know if this will work)
+&gt; ???
+
+Well, if it's for a "user" environment you could add a startup script in your 
+home dir.  (see <A  HREF="http://www.beanshell.org/changes.html">http://www.beanshell.org/changes.html</A>)
+
+I will probably add a search for a system startup script in the resource path
+as well with the next release... so that you could just distribute an extra 
+file with the JAR (instead of modifying the existing one).
+
+By the way, the javaPackages are not necessarily imported... They're simply
+an optimization for resolving names...  Bsh knows that those names are packages
+and not class names, so it can skip a few steps in name resolution (at least
+in theory).
+
+I'm not sure where the trade off should be for this (size of the file vs.
+usefullness)... or if it's even helping at all...I've never run any numbers.  
+
+
+Pat
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00009" HREF="msg00009.html">Importing</A></STRONG>
+<UL><LI><EM>From:</EM> Ted Eiles &lt;ted.eiles@learningmachines.com&gt;</LI></UL></LI>
+<LI><STRONG><A NAME="00009" HREF="msg00009.html">Importing</A></STRONG>
+<UL><LI><EM>From:</EM> Ted Eiles &lt;ted.eiles@learningmachines.com&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00029.html">Re: BeanShell suggestions</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00010.html">Re: BeanShell suggestions</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00009.html">Importing</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00030.html">Re: BeanShell : Separating parsing from evaluation</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00001"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00001"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

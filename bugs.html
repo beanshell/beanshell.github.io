@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>BeanShell - Known Issues</title>
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="css/my_styles.css" rel="stylesheet" type="text/css">
+</head>
+
+
+<body>
+	<aside>
+		<nav>
+			<ul class="menu">
+
+				<li><a href="home.html">Home</a>
+				</li>
+				<li><a href="intro.html">Intro</a>
+				</li>
+				<li> <a href="docs.html">Docs</a>
+				</li>
+				<li> <a href="download.html">Download</a>
+				</li>
+				<li> <a href="contact.html">Contact</a>
+				</li>
+				<li> <a href="https://github.com/beanshell/beanshell/wiki">
+						Community Wiki</a>
+				</li>
+				<li> <a href="developer.html">Developer</a>
+				</li>
+				<li> <a href="license.html">License</a>
+				</li>
+				<li> <a href="beany.html">Beany</a>
+				</li>
+				<li> <a href="http://www.amazon.com/exec/obidos/ASIN/0596002858">
+						<img alt="Learning Java" src="images/lj2.png" width="100px"> <br>
+						<span class="small"> Check out my book:<br>
+							Learning Java,<br>
+							O'Reilly &amp; Associates </span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</aside>
+
+	<article>
+
+		<section>
+			<title>Known Issues</title>
+			<h1>Known Issues</h1>
+			<h3>Please see the <a href="https://github.com/beanshell/beanshell/issues">
+					<b>Bug Tracking System on GitHub</b>
+				</a></h3>
+			<p>You may also email bug repots and example code to <a
+					href="mailto:bugs@beanshell.org">bugs@beanshell.org</a>
+			</p>
+
+			<ul>
+				<li>Typing certain extended statements interactively:
+					e.g. "if (foo) blah();" or "try {} catch {}" on the
+					command line waits for an extra ";" or [return] at the end of line.</li>
+			</ul>
+
+			<h3>Java bugs that cause problems for BeanShell</h3>
+			<p>
+				<ul>
+					<li>Serialization - <a href="http://developer.java.sun.com/developer/bugParade/bugs/4171142.html">
+							Bug number 4171142</a> causes serialized bsh scripts to fail to load if
+						they contain any primitive types (e.g. int, float, double). This Java bug
+						is fixed in 1.4. See the bug link for a workaround.</li>
+					<li> Java 1.1 Bug running the interpreter on the command line under Solaris.
+						Solaris green threads blocks all threads on I/O. Workaround - use native threads or use
+						the Console.
+						(See the FAQ).</li>
+				</ul>
+			</p>
+			</page>
+
+		</section>
+	</article>
+</body>
+
+</html>

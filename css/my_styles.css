@@ -1,0 +1,82 @@
+@charset "utf-8";
+/*
+ * Reset Styles
+ */
+@import 'normalize.css';
+/* Change all elements to use border-box */
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/*
+ * Fonts
+ */
+ @import url(//fonts.googleapis.com/css?family=Open+Sans);
+
+/*
+ * Base Styles
+ */
+body, html {
+	font-family: 'Open Sans', sans-serif;
+	background-image: linear-gradient(to right, SaddleBrown, Cornsilk );
+	font-size: medium;
+	line-height: 1.2;
+}
+span.small {
+	font-size: x-small;
+}
+span.large {
+	font-size: x-large;
+}
+aside nav {
+	background-image: linear-gradient(to right, Brown, Sienna );
+	text-align: left;
+	width: 17%;
+	float: left;
+}
+aside ul {
+	list-style-type: none;
+	column-width: 98%;
+}
+aside li {
+	width: 95%;
+	border: medium Brown;
+	padding-top: 3px;
+	padding-bottom: 25px;
+}
+aside li:hover {
+	background-color: Brown;
+	opacity:0.8;
+}
+aside li a {
+	color: greenyellow;
+	font-size: large;
+	text-decoration: none; 
+    text-shadow: 6px 8px 4px Maroon;
+}
+aside li a:active {
+	color: Brown;
+}
+article {
+	width: 83%;
+	float: right;
+}
+img.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 6px;
+}
+h1 {
+	text-align: center;
+}
+h2 {
+	font-style: italic; 
+}
+h1, h2, h3 {
+	color: maroon;
+}

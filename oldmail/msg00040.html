@@ -1,0 +1,123 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: RE: BeanShell Thread Safety -->
+<!--X-From: Chuck Irvine <Chuck.Irvine@mail.sprint.com> -->
+<!--X-Date: Tue, 1 Aug 2000 11:24:50 &#45;0500 (CDT) -->
+<!--X-Message-Id: H00009db05f29ad1.0965147042.kcopmp06@MHS -->
+<!--X-Content-Type: multipart/mixed -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>RE: BeanShell Thread Safety</TITLE>
+<LINK REV="made" HREF="mailto:Chuck.Irvine@mail.sprint.com">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00008.html">Date Prev</A>][<A HREF="msg00039.html">Date Next</A>][<A HREF="msg00008.html">Thread Prev</A>][<A HREF="msg00039.html">Thread Next</A>][<A HREF="maillist.html#00040">Date Index</A>][<A HREF="threads.html#00040">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>RE: BeanShell Thread Safety</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>TO</em>: <A HREF="mailto:pat@pat.net">pat@pat.net</A></LI>
+<LI><em>Subject</em>: RE: BeanShell Thread Safety</LI>
+<LI><em>From</em>: Chuck Irvine &lt;<A HREF="mailto:Chuck.Irvine@mail.sprint.com">Chuck.Irvine@mail.sprint.com</A>&gt;</LI>
+<LI><em>Date</em>: Tue, 1 Aug 2000 11:24:02 -0500</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Pat,
+
+Sounds good, but, sorry, what is an "AST"? Thanks. 
+
+Chuck. 
+
+PS: Any idea on when the next release will roll out? Eagerly awaiting
+:-) Thanks, again.
+
+-----Original Message-----
+From: pat [<A  HREF="mailto:pat@pat.net">mailto:pat@pat.net</A>]
+Sent: Tuesday, August 01, 2000 10:56 AM
+To: Irvine, Chuck R.
+Cc: pat
+Subject: Re: BeanShell Thread Safety
+
+
+On Mon, Jul 31, 2000 at 10:08:01AM -0500, Chuck Irvine wrote:
+&gt; I am using BeanShell in a multi threaded application so it is
+important
+&gt; for me to understand BeanShell thread safety. I find nothing on this
+&gt; subject in BeanShell documentation. Your help in better understanding
+&gt; this is appreciated!
+
+BeanShell should be safe for concurrent execution within one interpreter
+
+(without any explicit locking). The ASTs shouldn't store any volatile 
+infomation in instance variables.
+
+It has to be this way because bsh methods may be invoked by multiple
+threads
+started within the interpreter and asynchronously by external events.
+
+That said, I have not done any extensive testing of this and it wasn't 
+actually a priority in the design.. it just happened naturally.  I will
+be looking more closely at this in the future.
+
+
+Thanks,
+Pat
+
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00039" HREF="msg00039.html">Re: BeanShell Thread Safety</A></STRONG>
+<UL><LI><EM>From:</EM> Pat &lt;pat@pat.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00008.html">Re: BeanShell JDJ Article</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00039.html">Re: BeanShell Thread Safety</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00008.html">Re: BeanShell JDJ Article</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00039.html">Re: BeanShell Thread Safety</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00040"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00040"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

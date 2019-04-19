@@ -1,0 +1,63 @@
+<html>
+<head><title>BeanShell Example - Calling scripts from Java</title></head>
+<body bgcolor="#ffffff">
+
+<a href="../home.html"><img border=0 src="../images/homebutton.gif"><br>Home</a>
+<p>
+
+<h1>Calling scripts from Java</h1>
+
+Create an interpreter and source a script file, returning a value:
+<p>
+<center>
+<table width=100% cellpadding=5>
+<tr><td bgcolor="#afafac">
+<font size=+1><a href="CallScript1.java">CallScript1.java</a> - Invoke a script from Java</font>
+</td></tr>
+<tr><td bgcolor="#cfcfcc">
+<pre>
+import bsh.*;
+
+public class CallScript1 {
+    public static void main( String [] args ) throws EvalError {
+        Object result = new bsh.Interpreter().source("myscript.bsh");
+    }
+}
+</pre>
+</td></tr>
+</table>
+</center>
+<p>
+<p>
+
+This time we'll handle the two types of EvalError that can be thrown:
+<p>
+<center>
+<table width=100% cellpadding=5>
+<tr><td bgcolor="#afafac">
+<font size=+1><a href="CallScript2.java">CallScript2.java</a> - Invoke a script from Java, handling errors</font>
+</td></tr>
+<tr><td bgcolor="#cfcfcc">
+<pre>
+import bsh.*;
+
+public class CallScript2 {
+    public static void main( String [] args ) throws Exception {
+        try {
+            Object obj = new bsh.Interpreter().source("myscript.bsh");
+        } catch ( TargetError e ) {
+            System.out.println(
+                "The script or code called by the script threw an exception: "
+                + e.getTarget() );
+        } catch ( EvalError e2 )    {
+            System.out.println(
+                "There was an error in evaluating the script:" + e2 );
+        }
+    }
+}
+</pre>
+</td></tr>
+</table>
+</center>
+<p>
+

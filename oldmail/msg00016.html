@@ -1,0 +1,192 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Re: JDK tools -->
+<!--X-From: Daniel Leuck <dleuck@xuma.com> -->
+<!--X-Date: Fri, 31 Dec 1999 16:38:33 &#45;0600 (CST) -->
+<!--X-Message-Id: 386C8865.71CA5748@xuma.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: fBoY4EpfhW2F092yn@d.kth.se -->
+<!--X-Reference: 19991224225058.36821@pat.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: JDK tools</TITLE>
+<LINK REV="made" HREF="mailto:dleuck@xuma.com">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00014.html">Date Prev</A>][<A HREF="msg00015.html">Date Next</A>][<A HREF="msg00014.html">Thread Prev</A>][<A HREF="msg00015.html">Thread Next</A>][<A HREF="maillist.html#00016">Date Index</A>][<A HREF="threads.html#00016">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Re: JDK tools</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: <A HREF="mailto:pat@pat.net">pat@pat.net</A></LI>
+<LI><em>Subject</em>: Re: JDK tools</LI>
+<LI><em>From</em>: Daniel Leuck &lt;<A HREF="mailto:dleuck@xuma.com">dleuck@xuma.com</A>&gt;</LI>
+<LI><em>Date</em>: Fri, 31 Dec 1999 02:41:41 -0800</LI>
+<LI><em>CC</em>: Mikael Ståldal &lt;<A HREF="mailto:d96-mst@d.kth.se">d96-mst@d.kth.se</A>&gt;, <A HREF="mailto:users@beanshell.org">users@beanshell.org</A>,       <A HREF="mailto:developers@beanshell.org">developers@beanshell.org</A></LI>
+<LI><em>References</em>: &lt;fBoY4EpfhW2F092yn@d.kth.se&gt; &lt;19991224225058.36821@pat.net&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Sun does System.exit at the bottom of the main method in all of their tools.  I
+have no idea why but its very annoying!
+
+Pat, your compiler work isn't obsolete (although the source is now available for
+the compiler so you don't have to decompile.)  Sun has yet to create a reasonable
+API for the compiler.  I also had to copy all the source and make massive
+modifications just to compile a String in memory (rather than hitting the disk).
+Another super, super, super annoying "feature" is the wonderful security
+restriction which prevents classes from being reloaded even when completely
+dereferenced.  I can't dynamically update a class definition in Lingua without
+bouncing the VM.  I would think security of this type should be optional
+(defaulting to "on").  Suns VM also seems to hold on to classes loaded in the VM
+indefinitely.  This is very poor design.
+
+BTW - I just found a new bug.  Beanshell doesn't like (primitive).class (such as
+int.class) which is legal under the JLS.
+
+wait, I just thought of something else...
+
+Yep, I suspected as much.  It also doesn't like (type)[].class (such as
+Object[].class) which is also legal under the JLS.
+
+PS The new version of BeanShell kicks ass.
+
+...but I still think you should add some scripting niceties such as foreach and
+loop statements.  I've already added them to Lingua and I'd be happy to add them
+to BeanShell with your permission...
+
+foreach example:
+ints=new int[] {4,5,6};
+foreach(i, ints) print(i);
+
+output:
+4
+5
+6
+
+loop example:
+loop(i,4,6) print(i);
+
+output:
+4
+5
+6
+
+You should also overload arithmetic and comparison operators for classes
+extending java.lang.Number.  Comparison operators should also work with any class
+implementing java.lang.Comparable.  Again, I'll do it for you if you approve such
+changes.  This should have been a Java feature but time restrictions prevented
+Gosling from implementing them properly (by his own admission).  Time
+restrictions also screwed us out of parametric polymorphism (at least for the
+moment) and multiple return values.  Arg!  Calling methods to add two BigDecimals
+really sucks.
+
+I know you have voiced concern with deviating from the JLS during previous
+conversations we've had on this subject.  I have some thoughts on that subject.
+
+A) I don't think keywords such as foreach polute the namespace.  Who uses foreach
+as a variable name?  If anyone does I hope I don't ever meet them in a dark
+alley.
+B) I tried your -strict switch idea in Lingua but performance problems arose.
+This could be ameliorated by creating separate code bases but at that point you
+have different languages with different bugs...
+
+Anyway, enough bathering for today.  BeanShell looks great.  Back to work...
+
+Pat wrote:
+
+&gt; On Thu, Dec 23, 1999 at 09:04:47PM +0100, Mikael Ståldal wrote:
+&gt; &gt; Is it possible to run the JDK tools (javac, javap, jar, etc) from
+&gt; &gt; within Beanshell?
+&gt; &gt;
+&gt; ...
+&gt; &gt; I tried to this in bsh:
+&gt; &gt;
+&gt; &gt; BeanShell 1.0 beta - by Pat Niemeyer (pat@pat.net)
+&gt; &gt; bsh % args = new String[] { "HelloWorld.java" };
+&gt; &gt; bsh % sun.tools.javac.Main.main(args);
+&gt; &gt;
+&gt; &gt; and it did compile HelloWorld.java fine, but then I was
+&gt; &gt; immediatly thrown out of bsh.
+&gt;
+&gt; I have always assumed it is possible, but I hadn't tried it.
+&gt;
+&gt; I might be the case that Sun deliberately adds a System.exit() to their
+&gt; code just to prevent you from using the JDK compiler in this way...  Or maybe
+&gt; it's something else.
+&gt;
+&gt; A *long* time ago I decompiled the Sun javac package and figured out how to
+&gt; use it directly (without even necessitating going to the file system).
+&gt; However I'm sure that's all been rendered obsolete.
+&gt;
+&gt; I would like to be able to make bsh commands that wrap these, so it would be
+&gt; good if we can figure out what's up.
+&gt;
+&gt; Pat
+
+--
+X   U   M   A    &lt;engineering for e-business&gt;
+Daniel Leuck
+160 Pine St., 2nd Floor
+San Francisco, CA  94111
+Phone: (415)777-9988
+Fax: (415)777-2704
+email: dleuck@xuma.com
+<A  HREF="http://www.xuma.com">http://www.xuma.com</A>
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00015" HREF="msg00015.html">Re: JDK tools</A></STRONG>
+<UL><LI><EM>From:</EM> Pat &lt;pat@pat.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00014.html">RE: JDK tools</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00015.html">Re: JDK tools</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00014.html">RE: JDK tools</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00015.html">Re: JDK tools</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00016"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00016"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

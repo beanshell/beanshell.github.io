@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>BeanShell - Introduction</title>
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="css/my_styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<aside>
+		<nav>
+			<ul class="menu">
+
+				<li><a href="home.html">Home</a>
+				</li>
+				<li><a href="intro.html">Intro</a>
+				</li>
+				<li> <a href="docs.html">Docs</a>
+				</li>
+				<li> <a href="download.html">Download</a>
+				</li>
+				<li> <a href="contact.html">Contact</a>
+				</li>
+				<li> <a href="https://github.com/beanshell/beanshell/wiki">
+						Community Wiki</a>
+				</li>
+				<li> <a href="developer.html">Developer</a>
+				</li>
+				<li> <a href="license.html">License</a>
+				</li>
+				<li> <a href="beany.html">Beany</a>
+				</li>
+				<li> <a href="http://www.amazon.com/exec/obidos/ASIN/0596002858">
+						<img alt="Learning Java" src="images/lj2.png" width="100px"> <br>
+						<span class="small"> Check out my book:<br>
+							Learning Java,<br>
+							O'Reilly &amp; Associates </span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</aside>
+
+	<article>
+		<section>
+			<h1>Introduction</h1>
+			<p><em>See also the
+					<a href="manual/quickstart.html">Quick Start</a> section of the
+					<a href="manual/contents.html">User's Manual</a>.
+				</em></p>
+			<img align="left" src="images/beanyteach1.jpg">
+			<h2>What is BeanShell?</h2>
+			<br clear="left">
+			<p>
+				<font size="+2">B</font>eanShell is a small, free, embeddable Java source
+				interpreter with object scripting language features, written in Java.
+				BeanShell dynamically executes standard Java syntax and extends it with common
+				scripting conveniences such as loose types, commands, and method closures like
+				those in Perl and JavaScript.
+			</p>
+
+			<p>You can use BeanShell interactively for Java experimentation and
+				debugging as well as to extend your applications in new ways.
+				Scripting Java lends itself to a wide variety of applications including rapid
+				prototyping, user scripting extension, rules engines, configuration, testing,
+				dynamic deployment, embedded systems, and even Java education.</p>
+			<p>BeanShell is small and embeddable, so you can call BeanShell from your Java
+				applications to execute Java code dynamically at run-time or to provide
+				extensibility in your applications.
+				Alternatively, you can use standalone BeanShell scripts to manipulate Java applications;
+				working with Java objects and APIs dynamically.
+				Since BeanShell is written in Java and runs in the same VM as your application, you can
+				freely pass references to <q>live</q> objects into scripts and return them as results.</p>
+			<p>In short, BeanShell is dynamically interpreted Java, plus a scripting language and
+				flexible environment all rolled into one clean package.</p>
+
+			<h4>Summary of features</h4>
+			<ul>
+				<li>Dynamic execution of the full Java syntax, Java code fragments, as well
+					as loosely typed Java and additional scripting conveniences.</li>
+				<li>Transparent access to all Java objects and APIs.</li>
+				<li>Runs in four modes: Command Line, Console, Applet, Remote Session Server.</li>
+				<li>Can work in security constrained environments without a classloader or
+					bytecode generation for most features.</li>
+				<li>The interpreter is small ~150K jar file.</li>
+				<li>Pure Java.</li>
+				<li>It's <a href="license.html">Free!!</a></li>
+			</ul>
+			<h4>Java evaluation features:</h4>
+			<ul>
+				<li>Evaluate full Java source classes dynamically as well as isolated Java methods, statements,
+					and expressions.</li>
+			</ul>
+			<h4>Scripting features:</h4>
+			<ul>
+				<li>Optionally typed variables.</li>
+				<li>Scripted methods with optionally typed arguments and return values</li>
+				<li>Scripted objects (method closures) </li>
+				<li>Scripted interfaces and event handlers.</li>
+				<li>Convenience syntax for working with JavaBean properties, hashtables,
+					and primitive wrapper types.</li>
+				<li>Auto-allocation of variables to emulate Java properties files.</li>
+				<li>Extensible set of utility and shell-like commands</li>
+				<li>Dynamic classpath management including find grained class reloading</li>
+				<li>Dynamic command loading and user command path</li>
+				<li>Sophisticated namespace and callstack management</li>
+				<li>Detailed error reporting</li>
+			</ul>
+			<h4>BeanShell Uses</h4>
+			<ul>
+				<li>Interactive Java - try out object features, APIs and GUI widgets -
+					<q>hands on</q>.</li>
+				<li>Scripting extension for applications - Allow your applications
+					to be extended via scripts in an intuitive and simple way.</li>
+				<li>Macro Languages - Generate scripts as macros and execute them live in
+					your VM easily.</li>
+				<li>Education - Teach Java in a hands-on, live environment</li>
+				<li>Expression evaluator for scientific, financial apps and rules engines -
+					evaluate complex expressions with conditions and loops.</li>
+				<li>Remote debugging - Embed a live, remotely accessible shell / command line
+					in your application with just a few lines of code.</li>
+				<li>Use BeanShell declaratively to replace properties files and replace startup
+					config files with real scripts that perform complex initialization and setup
+					with the full Java syntax at their disposal.</li>
+			</ul>
+		</section>
+	</article>
+</body>
+
+</html>

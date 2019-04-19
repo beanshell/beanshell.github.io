@@ -1,0 +1,169 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Re: Closure failure? [ How they work ] -->
+<!--X-From: Pat <pat@pat.net> -->
+<!--X-Date: Wed, 16 Feb 2000 22:57:20 &#45;0600 (CST) -->
+<!--X-Message-Id: 20000216224404.24837@pat.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: mtuzot07jsb.fsf@hodge&#45;podge.mit.edu -->
+<!--X-Reference: mtuzot07jsb.fsf@hodge&#45;podge.mit.edu -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Closure failure? [ How they work ]</TITLE>
+<LINK REV="made" HREF="mailto:pat@pat.net">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00031.html">Date Prev</A>][<A HREF="msg00024.html">Date Next</A>][<A HREF="msg00031.html">Thread Prev</A>][<A HREF="msg00024.html">Thread Next</A>][<A HREF="maillist.html#00023">Date Index</A>][<A HREF="threads.html#00023">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Re: Closure failure? [ How they work ]</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: "Nathan J. Williams" &lt;<A HREF="mailto:nathanw@MIT.EDU">nathanw@MIT.EDU</A>&gt;</LI>
+<LI><em>Subject</em>: Re: Closure failure? [ How they work ]</LI>
+<LI><em>From</em>: Pat &lt;<A HREF="mailto:pat@pat.net">pat@pat.net</A>&gt;</LI>
+<LI><em>Date</em>: Wed, 16 Feb 2000 22:44:04 -0600</LI>
+<LI><em>Cc</em>: <A HREF="mailto:users@beanshell.org">users@beanshell.org</A>, <A HREF="mailto:developers@beanshell.org">developers@beanshell.org</A></LI>
+<LI><em>In-Reply-To</em>: &lt;mtuzot07jsb.fsf@hodge-podge.mit.edu&gt;; from Nathan J. Williams on Wed, Feb 16, 2000 at 07:30:12PM -0500</LI>
+<LI><em>Mail-Followup-To</em>: "Nathan J. Williams" &lt;nathanw@MIT.EDU&gt;,users@beanshell.org, developers@beanshell.org</LI>
+<LI><em>References</em>: &lt;mtuzot07jsb.fsf@hodge-podge.mit.edu&gt;</LI>
+<LI><em>Reply-To</em>: <A HREF="mailto:pat@pat.net">pat@pat.net</A></LI>
+<LI><em>Resent-Date</em>: Wed, 16 Feb 2000 23:56:02 -0500</LI>
+<LI><em>Resent-From</em>: developers@beanshell.org</LI>
+<LI><em>Resent-Message-ID</em>: &lt;"9tbogD.A.TCH.u63q4"@host3.cedant.com&gt;</LI>
+<LI><em>Resent-Sender</em>: developers-request@beanshell.org</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Wed, Feb 16, 2000 at 07:30:12PM -0500, Nathan J. Williams wrote:
+&gt; 
+&gt; Greetings. I'm trying to use Beanshell as part of an introductory Java
+&gt; teaching environment. The goal is to let the students write simple
+&gt; expressions to solve a problem without making them deal with the full
+&gt; overhead of class and method syntax, as well as to have a GUI
+&gt; environment that can give them rapid feedback on what their code is
+&gt; doing.
+
+Great.  I'd love to hear more about your project as you get it going.
+
+&gt; In porting this environment to use bsh, I've run into a problem with
+&gt; closures. The system wants some variable to be persistent across
+&gt; function calls, but I seem to be getting copy-on-write semantics
+&gt; instead of normal access semantics. My minimal test case is:
+
+[ example moved to the bottom of this email ]
+
+I can see how this would be confusing, but I'm afraid that it's currently
+the expected behavior.  The problem with loosening up the language such that
+you don't have to declare variables is that you don't have a clear way to
+determine where they are intended to be declared vs. where they are simply
+being assigned.  The most general solution (and the one that BeanShell
+currently uses) is that variablas are declared wherever they are assigned
+and if you want to assign a variable in a parent scope you have to use a
+modifier...
+
+I agree that this is not linguistically pleasant and it bothers me that it
+diverges from Java in a sense...  however Java doesn't allow defining methods
+within methods, so it's not entirely divergent.
+
+I agree that forcing students to learn a new (or at least non-standard usage) 
+keyword is not ideal...   I'll have to think about a suggestion for you.  
+
+[ The example ]
+
+&gt; ctest() {
+&gt; 
+&gt;     int x;
+&gt;     x = 5;
+&gt; 
+&gt;     print("Start. X is " + x);
+&gt; 
+&gt;     subfunc() {
+&gt;   print ("Subfunc. X is " + x);
+&gt;   x = x + 1;
+&gt;   print ("X is now " + x);
+&gt;     }
+&gt;     return this;
+&gt; }
+&gt; 
+&gt; I would expect that creating a ctest() object and callung subfunc()
+&gt; twice would print 5,6 and then 6,7. Instead:
+&gt; 
+&gt; bsh % source("closure.bsh");
+&gt; bsh % obj=ctest();
+&gt; Start. X is 5
+&gt; bsh % obj.subfunc();
+&gt; Subfunc. X is 5
+&gt; X is now 6
+&gt; bsh % obj.subfunc();
+&gt; Subfunc. X is 5
+&gt; X is now 6
+&gt; 
+&gt; ... indicating that the change to x isn't being made in the ctest()
+&gt; environment. 
+&gt; 
+&gt; I can get the behaviour I want if I change the references to x in
+&gt; subfunc() to super.x, but that both seems linguistically wrong and
+&gt; adds different, extraneous syntax to the code the students have to write.
+
+
+Thanks,
+Pat 
+
+P.S. I apologize again to people who get this twice (one for users@ and
+once for developers@) I will work out a solution as soon as possible.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00024" HREF="msg00024.html">Re: Closure failure? [ How they work ]</A></STRONG>
+<UL><LI><EM>From:</EM> nathanw@MIT.EDU (0000-Admin(0000))</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00031.html">BeanShell in the news...</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00024.html">Re: Closure failure? [ How they work ]</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00031.html">BeanShell in the news...</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00024.html">Re: Closure failure? [ How they work ]</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00023"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00023"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

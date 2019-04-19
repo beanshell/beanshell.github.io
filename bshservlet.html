@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>BeanShell - The BeanShell Servlet and Web Applications</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href="css/my_styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <aside>
+    <nav>
+      <ul class="menu">
+
+        <li><a href="home.html">Home</a>
+        </li>
+        <li><a href="intro.html">Intro</a>
+        </li>
+        <li> <a href="docs.html">Docs</a>
+        </li>
+        <li> <a href="download.html">Download</a>
+        </li>
+        <li> <a href="contact.html">Contact</a>
+        </li>
+        <li> <a href="https://github.com/beanshell/beanshell/wiki">
+            Community Wiki</a>
+        </li>
+        <li> <a href="developer.html">Developer</a>
+        </li>
+        <li> <a href="license.html">License</a>
+        </li>
+        <li> <a href="beany.html">Beany</a>
+        </li>
+        <li> <a href="http://www.amazon.com/exec/obidos/ASIN/0596002858">
+            <img alt="Learning Java" src="images/lj2.png" width="100px"> <br>
+            <span class="small"> Check out my book:<br>
+              Learning Java,<br>
+              O'Reilly &amp; Associates </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <article>
+    <section>
+      <h1>The BeanShell Servlet and Web Applications</h1>
+
+      <img src="images/beanywrench2.jpg">
+      <h1>The BeanShell Servlet and Web Applications</h1>
+      <br clear="left">
+
+      <p>The following is a small test servlet and webapp example for BeanShell.
+        You can use it to try BeanShell in your app server and execute scripts inside
+        the running container dynamically. (This can save you a lot of deployment and
+        re-deployment time during development).
+      </p>
+
+      <p>The BeanShell servlet accepts some text via an HTTP POST, evaluates it
+        capturing stdout and stderr, and shows you the results including any return
+        value. (The servlet also tells you the version of BeanShell that it is using,
+        which is useful if your container also includes BeanShell.)
+      </p>
+
+      <p> The servlet provides a simple form that you can use to post a script with
+        various options. You can also use the bsh.Remote client to post a
+        script from the command line to a remote app server and fetch the results,
+        including a numeric return value.
+      </p>
+
+      <p>
+        Please see the <a href="http://beanshell.org/manual/servletmode.html#BshServlet_and_Servlet_Mode_Scripting">
+          BeanShell User Manual, Servlet Section</a> for instructions on using the Remote
+        command and the BeanShell Servlet facilities.
+      </p>
+
+      <p>The source for the servlet is in the BeanShell source distribution.
+        You can also grab the
+        compiled example WAR file here. There are two versions - one that comes with
+        the BeanShell JAR included in the WAR file and one that expects the
+        BeanShell JAR to be in the app server's classpath:
+      </p>
+
+      <h4>
+        <a href="http://www.beanshell.org/bshservlet.war">
+          http://www.beanshell.org/bshservlet.war</a>
+      </h4>
+      <p></p>
+
+      (With bsh-xxx included)
+      <h4>
+        <a href="http://www.beanshell.org/bshservlet-wbsh.war">
+          http://www.beanshell.org/bshservlet-wbsh.war</a>
+      </h4>
+      <p></p>
+
+      <p>If you grab the latter you may want to rename it to simply "bshservlet.war".
+      </p>
+
+      <p>Deploy the WAR in your app server (likely just drop the war file in the correct
+        place) and then direct your browser to /bshservlet/index.html for instructions.
+      </p>
+
+      Again, please see the
+      <a href="http://beanshell.org/manual/servletmode.html#BshServlet_and_Servlet_Mode_Scripting">
+        BeanShell User Manual, Servlet Section</a> for more details.
+      <p></p>
+
+    </section>
+
+  </article>
+</body>
+
+</html>

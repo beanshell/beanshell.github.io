@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>BeanShell - BeanShell in NetBeans/Forte</title>
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="css/my_styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+		<aside>
+			<nav>
+				<ul class="menu">
+					<li><a href="home.html">Home</a>
+					</li>
+					<li><a href="intro.html">Intro</a>
+					</li>
+					<li> <a href="docs.html">Docs</a>
+					</li>
+					<li> <a href="download.html">Download</a>
+					</li>
+					<li> <a href="contact.html">Contact</a>
+					</li>
+					<li> <a href="https://github.com/beanshell/beanshell/wiki">
+							Community Wiki</a>
+					</li>
+					<li> <a href="developer.html">Developer</a>
+					</li>
+					<li> <a href="license.html">License</a>
+					</li>
+					<li> <a href="beany.html">Beany</a>
+					</li>
+					<li> <a href="http://www.amazon.com/exec/obidos/ASIN/0596002858">
+							<img alt="Learning Java" src="images/lj2.png" width="100px"> <br>
+							<span class="small"> Check out my book:<br>
+								Learning Java,<br>
+								O'Reilly &amp; Associates </span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</aside>
+	
+		<article>
+					<section>
+					<h1>BeanShell in NetBeans/Forte</h1>
+					<h2>Upgrading BeanShell in NetBeans/Forte</h2>
+					<p>If you use BeanShell in the NetBeans IDE and wish to upgrade the version of BeanShell,
+						you simply have to replace the bsh jar file in the <b><em>modules\ext</em></b>
+						directory with the new version. e.g.</p>
+					<pre>
+  // NetBeans
+  c:\netbeans\modules\ext\bsh-1.01.jar
+
+  // Forte
+  c:\forte4j/lib/ext/bsh-1_0-fj.jar
+ </pre>
+					<p>The only catch is that may have to rename the new jar file to the "bsh-1.01.jar"
+						name, because it is hard-coded in the modules\scripting.jar manifest classpath.
+						I hope they will make this more flexible in the future.</p>>
+					</section>
+
+	</article>
+</body>
+
+</html>

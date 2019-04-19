@@ -1,0 +1,288 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Re: BeanShell JDJ Article -->
+<!--X-From: Pat <pat@pat.net> -->
+<!--X-Date: Wed, 10 May 2000 09:44:53 &#45;0500 -->
+<!--X-Message-Id: 20000510094453.39063@pat.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: BeanShell JDJ Article</TITLE>
+<LINK REV="made" HREF="mailto:pat@pat.net">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00006.html">Date Prev</A>][<A HREF="msg00040.html">Date Next</A>][<A HREF="msg00028.html">Thread Prev</A>][<A HREF="msg00040.html">Thread Next</A>][<A HREF="maillist.html#00008">Date Index</A>][<A HREF="threads.html#00008">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Re: BeanShell JDJ Article</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: <A HREF="mailto:developers@beanshell.org">developers@beanshell.org</A>, <A HREF="mailto:users@beanshell.org">users@beanshell.org</A></LI>
+<LI><em>Subject</em>: Re: BeanShell JDJ Article</LI>
+<LI><em>From</em>: Pat &lt;<A HREF="mailto:pat@pat.net">pat@pat.net</A>&gt;</LI>
+<LI><em>Date</em>: Wed, 10 May 2000 09:44:53 -0500</LI>
+<LI><em>Approved</em>: pat@pat.net</LI>
+<LI><em>Mail-Followup-To</em>: developers@beanshell.org, users@beanshell.org</LI>
+<LI><em>Reply-To</em>: <A HREF="mailto:pat@pat.net">pat@pat.net</A></LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+I have to apologize for the lack of info on BeanShell lately.  I've had
+some personal stuff going on that's prevented me from getting out a new
+release.
+
+Anyway, I thought you might be interested in my response to someone who
+is writing an article about bsh for the JDJ.
+
+As for those of you who have been patiently waiting for me to get back to
+you about your bug fixes and major enhancements (you know who you are ;) )
+I hope this indicates that I am going to try to get to them now.
+
+In the future when we have moved development over to sourceforge.net it
+will be easier to distribute the development process and things shouldn't
+block on me as often.
+
+Thanks to everyone,
+Pat Niemeyer
+
+
+----- Forwarded message from Pat &lt;pat@pat.net&gt; -----
+Message-ID: &lt;20000510093643.11167@pat.net&gt;
+Date: Wed, 10 May 2000 09:36:43 -0500
+From: Pat &lt;pat@pat.net&gt;
+To: RICKHIGH@aol.com
+Subject: Re: BeanShell JDJ Article
+Reply-To: pat@pat.net
+References: &lt;e4.4b294fa.264a6cc1@aol.com&gt;
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Mailer: Mutt 0.89.1
+In-Reply-To: &lt;e4.4b294fa.264a6cc1@aol.com&gt;; from RICKHIGH@aol.com on Wed, May 10, 2000 at 03:41:53AM -0400
+Status: RO
+Content-Length: 7414
+Lines: 172
+
+On Wed, May 10, 2000 at 03:41:53AM -0400, RICKHIGH@aol.com wrote:
+&gt; 
+&gt; Hi Pat. How is it going? I like BeanShell and I have showed it to many 
+&gt; people. It is a good way to learn Java in an interactive manner.
+&gt; I am writing a series of articles highlighting various scrpting languages 
+&gt; that run in the 
+&gt; JVM. I've decided to highlight BeanShell in the July issue of the JDJ.
+
+Excellent.  That's very exciting.
+
+I have been meaning for some time to write an article myself, but something
+always pulls me away ;)
+
+&gt; What is the future RoadMap for BeanShell, i.e., what features do you plan for 
+&gt; BeanShell?
+
+Well, there is a brief "wishlist" on the web site that perhaps you've seen
+(<A  HREF="http://www.beanshell.org/wishlist.html">http://www.beanshell.org/wishlist.html</A>)
+
+Some features which will almost certainly be in the next release are:
+
+- More dynamic class loading and class reloading.
+
+- Taking advantage of the API that allows introspection of private 
+  and fields/methods.
+
+- Better error reporting...  a more complete test suite.
+
+I also have submissions from sommeone right now that add regular expression 
+support on par with Perl...  We've concocted a way to add this without 
+deviating too much from standard Java syntax...  That's always been a goal, 
+to maintain as much real Java syntax as possible and simply extend /loosen it.
+
+I think there is a need for a language that scales semantically between
+scripting and rigorous, static typing.  I think that loose Java is 
+"the natural scripting language" for Java.  It requires almost no learning
+curve.
+
+One feature that bsh got in the latest version takes advantage of a new
+reflection capability in JDK1.3 - dynamic proxy creation.  This allows bsh
+to emulate any type of interface... You've always been able to script event
+listeners, etc. in bsh, however the types were limited to the known types
+in AWT and Swing.  Now with 1.3 you can script any kind of interface.
+
+In the future I'd like to extend the capability to be able to generate 
+arbitrary types... e.g. extend existing types as subclasses or script 
+abstract base classes.  This may sound more archane, but it's important for
+one reason...  It would allow the bsh syntax to be extended to cover class
+definitions as well...  Right now bsh only understands statements and 
+expressions as well as it's own extended method closures (as in Perl or
+JavaScript... methods that return 'this' and act like objects).  It would be
+nice if bsh could interpret 100% of the Java syntax including classes.
+
+I'd also like to be able to have bsh spew out compilable code someday...
+(not that bsh isn't reasonably fast... it's really just limited by the speed
+of the reflection API right now).  But it would make a lot of people happy
+if they could flip a switch and turn their bsh script into a compileable java
+file.
+
+I also think bsh should provide better support for serving as a JavaBean
+inside of various IDEs...  to wire together sophisticated connections.
+
+&gt; I see that you have made BeanShell opensource. How many developers are 
+&gt; working to extend BeanShell features?
+
+There are a couple of hundred people on the developer's list.  I'm currently
+in the process of moving development over from the beanshell.org ISP to
+sourceforge.net (an open source facility with lots of neat features like
+public CVS, etc.)
+
+I have been really bad lately about getting any work done on bsh for personal
+reasons... and some of the developers are bugging me ;)  So I really do
+have to get to work on the next release soon.
+
+I think I'll do a maintenance release for bug fixes and then start working
+on a 2.0 with the new features.
+
+By the way, there will be a brief section on BeanShell in the third edition
+of my book: Exploring Java, O'Reilly &amp; Associates - The book is to be 
+retitled "Learning Java" (for some reason).
+
+I mention this because it will probably prompt me to get back to work on
+the next release... we've been stuck at 1.0 for a long time.
+
+&gt; How would you compare BeanShell to DynamicJava?
+
+I'm afraid I don't know much about DynamicJava.  The most popular alternative
+that I've heard about is of course JPython.  I have a lot of respect for
+Python (although I can't digest it's syntax... I need my curly braces ;) )
+but I see it as more of a full blown language that's not necessarily as nice
+a match for Java.  BeanShell is something like 150K in size...  It mates
+well with Java.  I'd like to see it as a standard extension someday (hah ;) ).
+JPython is probably much more powerful, but much bigger.
+
+
+&gt; Do you know of any commercial products that use BeanShell as their scripting 
+&gt; language?
+
+I started maintaining a list... but it's incomplete.  
+
+First, everyone should know that BeanShell is distributed with Emacs as part
+of Paul Kinnucan's JDE to serve as a Java interpreter.. I believe he also
+uses it internally.
+
+Various other IDE's are providing plug-ins for it:
+
+Sun's NetBeans has been interested (they did a poll recently and JPython and
+BeanShell were the top choices).
+
+I believe the ElixirIDE (<A  HREF="http://elixirtech.com/ElixirIDE/">http://elixirtech.com/ElixirIDE/</A>) has a plug in now.
+
+And someone just wrote one for JBuilder  
+<A  HREF="http://www.multimania.com/bjb/index.en.html">http://www.multimania.com/bjb/index.en.html</A>
+
+CERN - The physics people use it in a sophisticated visualization app.
+
+Two years ago on Corel (The Word Perfect peole) contributed a lot of bug fixes
+and help...  but then their Java efforts sort of dried up.
+
+I am aware of some Jigsaw integration
+and the JOS (www.jos.org) people are considering it for their shell language.
+
+I am probably forgetting some important ones...  Tens of thousands of people
+have downloaded the code and I have perhaps a thousands license forms
+(It's just a request, the code is LGPL of course).
+
+I hope to put a better list together when I update the web site.
+
+
+&gt; Any guess as to the number of people that are using BeanShell?
+
+It's very hard to say...  I'm sure there are hundreds of commercial products
+using or at least evaluating BeanShell right now.    But because of the
+free license they don't generally have to give me much feedback ;)  
+
+&gt; When will be the next major release of BeanShell? What will that release 
+&gt; include?
+
+Well, as I said the pressure is building to get the new features going...
+so I hope to start again in the next few weeks.  Usually that creates a 
+flurry of releases.  Also, with moving to sourceforge.net I hope that I can
+distribute the load now...  Currently I've been doing everything from fixes
+to running the mailing list manually.
+
+&gt; What special features set BeanShell apart from other scripting languages?
+
+I hope I addressed a few in the first part of this email.  (And I hope I 
+haven't ranted too much...)  
+
+Other interesting thigns to mention are that:
+
+BeanShell can be easily embedded in Java or vice-versa bsh scritps can call
+any Java app or API seamlessly...  By seamlessly I mean that live Java objects
+can be passed into and return from scripts.
+
+Bsh also has a "server mode" which allows you to run bsh inside a running app
+and then open a console from your web browser (or telnet) into the application
+and poke around like a debugger...  (This features is shakey in some releases).
+
+I'm sure I'm forgetting things...
+
+I'd be happy to elaborate or try to give you some more eloquent quotes if
+you need them ;)  It's still early for me ;)
+
+Please don't hesitate to ask for more info.  If anything, your article will
+probably prompt me to get back to work on bsh ;)
+
+
+Thanks,
+Pat Niemeyer
+
+
+----- End forwarded message -----
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00006.html">Re: Manual, doc tools, code, cvs, sourceForge?</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00040.html">RE: BeanShell Thread Safety</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00028.html">Editor with BeanShell support</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00040.html">RE: BeanShell Thread Safety</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00008"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00008"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

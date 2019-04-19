@@ -1,0 +1,139 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Re: Importing and Using User Defined Classes -->
+<!--X-From: Pat <pat@pat.net> -->
+<!--X-Date: Wed, 26 Jan 2000 13:56:46 &#45;0600 -->
+<!--X-Message-Id: 20000126135646.23262@pat.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: H00009db043c85f1.0948916380.kcopmp06@MHS -->
+<!--X-Reference: H00009db043c85f1.0948916380.kcopmp06@MHS -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Importing and Using User Defined Classes</TITLE>
+<LINK REV="made" HREF="mailto:pat@pat.net">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00022.html">Date Prev</A>][<A HREF="msg00021.html">Date Next</A>][<A HREF="msg00022.html">Thread Prev</A>][<A HREF="msg00021.html">Thread Next</A>][<A HREF="maillist.html#00037">Date Index</A>][<A HREF="threads.html#00037">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Re: Importing and Using User Defined Classes</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Chuck Irvine &lt;<A HREF="mailto:Chuck.Irvine@mail.sprint.com">Chuck.Irvine@mail.sprint.com</A>&gt;</LI>
+<LI><em>Subject</em>: Re: Importing and Using User Defined Classes</LI>
+<LI><em>From</em>: Pat &lt;<A HREF="mailto:pat@pat.net">pat@pat.net</A>&gt;</LI>
+<LI><em>Date</em>: Wed, 26 Jan 2000 13:56:46 -0600</LI>
+<LI><em>Approved</em>: pat@pat.net</LI>
+<LI><em>Cc</em>: <A HREF="mailto:users@beanshell.org">users@beanshell.org</A>, <A HREF="mailto:developers@beanshell.org">developers@beanshell.org</A></LI>
+<LI><em>In-Reply-To</em>: &lt;H00009db043c85f1.0948916380.kcopmp06@MHS&gt;; from Chuck Irvine on Wed, Jan 26, 2000 at 01:53:01PM -0600</LI>
+<LI><em>Mail-Followup-To</em>: Chuck Irvine &lt;Chuck.Irvine@mail.sprint.com&gt;,users@beanshell.org, developers@beanshell.org</LI>
+<LI><em>References</em>: &lt;H00009db043c85f1.0948916380.kcopmp06@MHS&gt;</LI>
+<LI><em>Reply-To</em>: <A HREF="mailto:pat@pat.net">pat@pat.net</A></LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Wed, Jan 26, 2000 at 01:53:01PM -0600, Chuck Irvine wrote:
+&gt; 
+&gt; 1. I couldn't get the BeanShell that came with the latest jde beta
+&gt; distribution to work, so I downloaded it from
+&gt; <A  HREF="http://www.beanshell.org/bsh-1.0.jar">http://www.beanshell.org/bsh-1.0.jar</A>. 
+
+What version is the one that came with the JDE?  
+(It should print the version when it starts up).
+
+&gt; 2. Then I moved bsh to the directory that has the attached file in it.
+&gt; Shouldn't have to probably, but I was grasping at straws.
+&gt; 
+&gt; 3. Then double click in bsh-1.0.jar to invoke the BeanShell desktop.
+
+Well, if you start bsh by double clicking the jar file then Java probably 
+doesn't have the class path set to include the current directory.
+
+If you could try running bsh from the command line:
+
+  java -classpath bsh-1.0.jar;. bsh.Console
+
+that would include both the jar file and the current directory in the path.
+
+I'm going to try to make bsh friendlier about loading classes not in the class
+path in the next release.
+
+
+&gt; 4. Entered at the bsh prompt, taking you advice to not invoke "Impot": 
+&gt;     &gt;  Foo foo = new Foo();
+&gt; This triggers the bsh error:
+&gt; // Error: bsh.EvalError: "Foo" does not resolve to a class name.  It is
+&gt; undefined. : 
+&gt; 
+&gt; 5. Next I try import and then step # 4 again:
+&gt;    &gt; import Foo;
+&gt;    &gt; Foo foo = new Foo();  --- Still hangs here
+
+Yes, I see.  I just tried it and it does hang.
+
+I'll investigate why.
+
+In general you should be able to use any class in the class path without
+explicitly importing it.  e.g.:
+
+  new Foo()
+  new mypackage.Foo();
+
+So I think you're stubmling over two problems 1) not having Foo in the
+classpath and 2) a bug that you've discovered involving importing explicit
+class names.
+
+(sorry ;) )
+
+
+Pat
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00022.html">Importing and Using User Defined Classes</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00021.html">Re-reading an edited class definition</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00022.html">Importing and Using User Defined Classes</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00021.html">Re-reading an edited class definition</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00037"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00037"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

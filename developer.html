@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>BeanShell - Developer's Area</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="css/my_styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <aside>
+        <nav>
+            <ul class="menu">
+
+                <li><a href="home.html">Home</a>
+                </li>
+                <li><a href="intro.html">Intro</a>
+                </li>
+                <li> <a href="docs.html">Docs</a>
+                </li>
+                <li> <a href="download.html">Download</a>
+                </li>
+                <li> <a href="contact.html">Contact</a>
+                </li>
+                <li> <a href="https://github.com/beanshell/beanshell/wiki">
+                        Community Wiki</a>
+                </li>
+                <li> <a href="developer.html">Developer</a>
+                </li>
+                <li> <a href="license.html">License</a>
+                </li>
+                <li> <a href="beany.html">Beany</a>
+                </li>
+                <li> <a href="http://www.amazon.com/exec/obidos/ASIN/0596002858">
+                    <img alt="Learning Java" src="images/lj2.png" width="100px"> <br>
+                    <span class="small"> Check out my book:<br>
+                        Learning Java,<br>
+                        O'Reilly &amp; Associates </span>
+                </a>
+            </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <article>
+
+            <section>
+                <h1>Developer's Area</h1>
+
+                <img align="left" src="images/beanywrench2.jpg">
+                <h2>BeanShell Developer's Area</h2>
+                <br clear="left">
+
+                This section holds information and resources for BeanShell developers.
+                <p></p>
+
+                <h3>GitHub Access </h3>
+                The latest code is always available from <a href="https://github.com/beanshell/beanshell">GitHub</a>.
+                To check out a copy use the git command like so:
+                <p></p>
+                <p>
+                    <pre>
+    git clone https://github.com/beanshell/beanshell
+                </pre>
+                </p>
+
+                <p>
+                    You can report issues and other access other services through GitHub.
+                </p>
+
+                <h3>The BeanShell Source Code</h3>
+
+                <p>The source distribution contains a brief
+                    <a href="CodeMap.html">Map to the Source Code</a> outlining the major files
+                    of the <em>bsh</em> package.
+                    It also contains the
+                    <a href="testsuite.html">BeanShell Test Suite</a>
+                </p>
+
+                <p>To compile all of the modules in the BeanShell distribution requires
+                    Java version 1.5+, however BeanShell itself is backwards compatible with
+                    Java version 1.1. The Ant build file has properties which can be adjusted to
+                    exclude building modules requiring Java versions 1.2, 1.3, or external APIs
+                    such as the servlet API, BSF, and javax.script.
+                    Development versions now use maven.
+                </p>
+
+                <p>If you want to change the
+                    core BeanShell grammar you will also need the open source
+                    <a href="https://javacc.org/">JavaCC</a> parser generator.
+                </p>
+
+                <p>
+                    <table cellpadding="5" border="1" width="100%">
+                        <tr>
+                            <td>
+                                <h3>Release 2.0b4 (Legacy)</h3>
+                                Source Snapshot - <a href="files/bsh-2.0b4-src.jar">bsh-2.0b4-src.jar</a>
+                            </td>
+                        </tr>
+                    </table>
+                </p>
+
+
+                <h3>The BeanShell Test Suite</h3>
+                <p>A language is a complex and deeply intertwined thing.
+                    The <a href="testsuite.html">BeanShell Test Suite</a> is a critical part of
+                    the development process that allows us to test changes in a comprehensive
+                    way.
+                    Often, what seems like a small change can have an unexpected impact on another
+                    part of the language.
+                    The test suite started as of
+                    a simple test harness script and about 120 test files: we currently use both junit and bsh test
+                    scripts.
+                    You can help by adding new scripts and improving or documenting the ones that are there.
+                    We especially need more complex environment related scripts to cover areas such
+                    as web applications, class reloading, etc.
+                </p>
+
+                <h3>Developer's List</h3>
+                <p>We used to have a developer's
+                    <a href="contact.html">mailing list</a>.
+                </p>
+
+            </section>
+
+    </article>
+</body>
+
+</html>

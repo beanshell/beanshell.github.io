@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>BeanShell - BeanShell with Weblogic</title>
+	<LINK REL="SHORTCUT ICON" HREF="http://www.beanshell.org/favicon.ico">
+</head>
+
+<body>
+	<aside>
+		<nav>
+			<ul class="menu">
+				<li><a href="home.html">Home</a>
+				</li>
+				<li><a href="intro.html">Intro</a>
+				</li>
+				<li> <a href="docs.html">Docs</a>
+				</li>
+				<li> <a href="download.html">Download</a>
+				</li>
+				<li> <a href="contact.html">Contact</a>
+				</li>
+				<li> <a href="https://github.com/beanshell/beanshell/wiki">
+						Community Wiki</a>
+				</li>
+				<li> <a href="developer.html">Developer</a>
+				</li>
+				<li> <a href="license.html">License</a>
+				</li>
+				<li> <a href="beany.html">Beany</a>
+				</li>
+				<li> <a href="http://www.amazon.com/exec/obidos/ASIN/0596002858">
+						<img alt="Learning Java" src="images/lj2.png" width="100px"> <br>
+						<span class="small"> Check out my book:<br>
+							Learning Java,<br>
+							O'Reilly &amp; Associates </span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</aside>
+
+	<article>
+
+		<section>
+			<title>BeanShell with Weblogic</title>
+			<h1>Upgrading BeanShell in Weblogic 6.x</h1>
+			<p>Weblogic's app server 6.1+ comes bundled with version 1.01 of BeanShell.
+				This causes two problems - first, it is seriously out of date and second it interferes with the ability
+				to use BeanShell in your own apps.</p>
+
+			<a>If you wish to upgrade your Weblogic 6.1 to use the latest BeanShell and use it in your apps,
+				grab a newer version of BeanShell (at least bsh-1.2b4.jar or greater) and place it in the server
+				classpath prior to the weblogic.jar file. Note that including a newer BeanShell JAR inside your WAR or
+				EAR file will not work,
+				as the classpath gives priority to the system classpath.
+				On a Unix system you can do this in the <em>startWeblogic.sh</em> command under the appropriate domain
+				directory.</p>
+				For example, in the default configuration the file would be:
+
+				<pre>
+  <p><em>[weblogic home]</em>/wlserver6.1/config/mydomain/startWeblogic.sh</p>
+</pre>
+
+
+				<p>You can add the JAR to the path like this:</p>
+
+				<pre>
+  BSH=/home/niemeyp/lib/bsh-1.2b4.jar
+  #CLASSPATH=$WL_HOME:$WL_HOME/lib/weblogic_sp.jar:$WL_HOME/lib/weblogic.jar
+  CLASSPATH=$BSH:$WL_HOME:$WL_HOME/lib/weblogic_sp.jar:$WL_HOME/lib/weblogic.jar
+</pre>
+
+		</section>
+	</article>
+</body>
+
+</html>

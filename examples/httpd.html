@@ -1,0 +1,85 @@
+<html>
+<head><title>BeanShell Example - Multi-threaded Web Server</title></head>
+<body bgcolor="#ffffff">
+
+<a href="../home.html"><img border=0 src="../images/homebutton.gif"><br>Home</a>
+<p>
+
+<h1>Multi-threaded Web Server</h1>
+
+This example has been my benchmark for how well BeanShell interprets Java.
+<p>
+
+This is basically just the TinyHtttpd example from the networking chapter
+of my book, 
+<a href="http://www.ora.com/catalog/learnjava/">Learning Java 
+- O'Reilly & Associates</a>.
+I have just recast the objects as bsh methods.
+<p>
+
+<p>
+<center>
+<table width=100% cellpadding=5>
+<tr><td bgcolor="#afefac">
+<font size=+1><a href="httpd.bsh">httpd.bsh</a> - A simple scripted HTTP server</font>
+</td></tr>
+<tr><td bgcolor="#cfefcc">
+<pre>
+httpd( int port ) { 
+
+    run() {
+        while ( true ) {
+            con = connection( ss.accept() );
+            new Thread( con ).start();
+        }
+    }
+
+    connection( Socket client ) {
+        run() {
+            try {
+                BufferedReader in = new BufferedReader( 
+                    new InputStreamReader(client.getInputStream(), "8859_1") );
+                OutputStream out = new BufferedOutputStream( 
+                    client.getOutputStream() );
+                PrintWriter pout = new PrintWriter( 
+                    new OutputStreamWriter(out, "8859_1"), true );
+                String request = in.readLine();
+                print( "Servicing request: "+request );
+
+                StringTokenizer st = new StringTokenizer( request );
+                if ( (st.countTokens() >= 2) && st.nextToken().equals("GET") ) {
+                    if ( (request = st.nextToken()).startsWith("/") )
+                        request = request.substring( 1 );
+                    if ( request.endsWith("/") || request.equals("") )
+                        request = request + "index.html";
+                    try {   
+                        FileInputStream fis = new FileInputStream ( request );
+                        byte [] data = new byte [ fis.available() ];
+                        fis.read( data );
+                        out.write( data );
+                        out.flush();
+                    } catch ( FileNotFoundException e ) {
+                        print("file not found...");
+                        pout.println( "404 Object Not Found" ); }
+                } else 
+                    pout.println( "400 Bad Request" );
+                client.close();
+            } catch ( IOException e ) {
+                print( "I/O error " + e ); }
+        }
+
+        return this;
+    }
+
+    ServerSocket ss = new ServerSocket( port );
+    print("starting httpd on port: "+port);
+    t = new Thread( this );
+    t.start();
+    return t;
+}
+</pre>
+</td></tr>
+</table>
+</center>
+<p>
+

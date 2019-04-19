@@ -1,0 +1,163 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Importing and Using User Defined Classes -->
+<!--X-From: "Chuck Irvine" <crirvine1@email.msn.com> -->
+<!--X-Date: Tue, 25 Jan 2000 23:21:19 &#45;0600 (CST) -->
+<!--X-Message-Id: LPBBIPBGLFMLNLFMGFFGGEBGCAAA.crirvine1@email.msn.com -->
+<!--X-Content-Type: multipart/alternative -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Importing and Using User Defined Classes</TITLE>
+<LINK REV="made" HREF="mailto:crirvine1@email.msn.com">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00020.html">Date Prev</A>][<A HREF="msg00037.html">Date Next</A>][<A HREF="msg00020.html">Thread Prev</A>][<A HREF="msg00037.html">Thread Next</A>][<A HREF="maillist.html#00022">Date Index</A>][<A HREF="threads.html#00022">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Importing and Using User Defined Classes</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: "BeanShellMailingList" &lt;<A HREF="mailto:users@beanshell.org">users@beanshell.org</A>&gt;</LI>
+<LI><em>Subject</em>: Importing and Using User Defined Classes</LI>
+<LI><em>From</em>: "Chuck Irvine" &lt;<A HREF="mailto:crirvine1@email.msn.com">crirvine1@email.msn.com</A>&gt;</LI>
+<LI><em>Date</em>: Tue, 25 Jan 2000 23:23:03 -0600</LI>
+<LI><em>Importance</em>: Normal</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+
+
+
+
+
+
+<div class=Section1>
+
+<p class=MsoNormal><span class=EmailStyle15><font size=2 color=black
+face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:
+Arial'>I&#8217;ve just started playing with BeanShell and so far it looks great. But
+I can&#8217;t figure out how to import my class definition into it. Say I&#8217;ve got a file
+Foo.java with the contents:<o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal><span class=EmailStyle15><font size=2 color=black
+face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:
+Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'>class Foo {<o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'><span style="mso-spacerun: yes">&nbsp;&nbsp; </span>public
+void test() {<o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>System.out.println(&#8220;test&#8221;);<o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'><span style="mso-spacerun: yes">&nbsp;&nbsp; </span>}<o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'>}<o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'>Then inside the BeanShell, I want to do something
+like:<o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'>bsh % import Foo;<o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'>bsh % Foo foo = new Foo();<span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>------ <span style="mso-spacerun:
+yes">&nbsp;&nbsp;</span>When I hit return here, BeanShell hangs<o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'>bsh % foo.test();<o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'>I would love to get this working. Any help would be
+much appreciated.<o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></font></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span class=EmailStyle15><font
+size=2 color=black face=Arial><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial'>Chuck Irvine<o:p></o:p></span></font></span></p>
+
+</div>
+
+
+
+
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00020.html">Re: BeanShell / JBuilder Addin</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00037.html">Re: Importing and Using User Defined Classes</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00020.html">Re: BeanShell / JBuilder Addin</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00037.html">Re: Importing and Using User Defined Classes</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00022"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00022"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

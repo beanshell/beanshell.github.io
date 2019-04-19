@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<body bgcolor="#ffffff">
+	<h1>BeanShell Tips</h1>
+	<em>Old document... update me</em>
+	<ul>
+		<li>Use the object() method to get an empty bsh object for holding data items. e.g.</li>
+		<pre>
+  myStuff = object();
+  myStuff.foo = 42;
+  myStuff.bar = "blah";
+</pre>
+
+		<li> If you'd prefer to work in your own text editor (rather than a bsh editor window)
+			simply pop up an editor window with a source command pointing to your file: e.g. </li>
+		<pre>
+  source("/home/pat/myscript.bsh");
+</pre>
+		Then you can simply hit the "eval" button each time you want to run it.
+		<li> You can use #!/bin/java bsh.Interpreter to make executable bsh scripts
+			in unix-like environments.</li>
+		<li> Test for undefined vars with == void, undefine a var with the unset("name") command.</li>
+	</ul>
+	<em>Coming...</em>
+</body>
+
+</html>

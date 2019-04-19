@@ -1,0 +1,115 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Java compatibility idea -->
+<!--X-From: Max Gilead <gilead@linart.pl> -->
+<!--X-Date: Mon, 13 Mar 2000 16:35:53 &#45;0600 (CST) -->
+<!--X-Message-Id: 38CD6D28.A40ECB0B@linart.pl -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Java compatibility idea</TITLE>
+<LINK REV="made" HREF="mailto:gilead@linart.pl">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00027.html">Date Prev</A>][<A HREF="msg00004.html">Date Next</A>][<A HREF="msg00006.html">Thread Prev</A>][<A HREF="msg00004.html">Thread Next</A>][<A HREF="maillist.html#00005">Date Index</A>][<A HREF="threads.html#00005">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Java compatibility idea</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: BeanShell developers &lt;<A HREF="mailto:developers@beanshell.org">developers@beanshell.org</A>&gt;</LI>
+<LI><em>Subject</em>: Java compatibility idea</LI>
+<LI><em>From</em>: Max Gilead &lt;<A HREF="mailto:gilead@linart.pl">gilead@linart.pl</A>&gt;</LI>
+<LI><em>Date</em>: Mon, 13 Mar 2000 23:35:20 +0100</LI>
+<LI><em>Reply-To</em>: Max Gilead &lt;<A HREF="mailto:gilead@linart.pl">gilead@linart.pl</A>&gt;</LI>
+<LI><em>Sender</em>: <A HREF="mailto:max@host3.cedant.com">max@host3.cedant.com</A></LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hi!
+
+There were talk about making BeanShell bytecode-compatible with Java by
+writing bytecode compiler. While it is good solution, I thought that
+there is another one, maybe simpler and more flexible.
+
+Do you know what NetRexx does when it compiles its source code? It first
+translates it to regular .java file and then invokes java compiler for
+it. BeanShell is much more similar to Java than NetRexx so writing such
+a translator would be even better solution.
+
+Pros and cons:
++ (important) allows people to write prototype code in BeanShell and
+then automatically convert it to Java (note that I think of translator
+which would produce well-looking Java code, or ugly code + some
+beautifier :-)
++ writing text translator is simpler, less bug prone
++ allows people to distribute their source code as Java so anybody
+without BeanShell interpreter can run it (although anybody should get
+one :-)
+- it's slower
+
+Just an idea, but very good one I think.
+
+Max
+
+--
+Max Gilead (gilead@linart.pl) <A  HREF="http://3d.linart.krakow.pl/OfficinaArtificialis">http://3d.linart.krakow.pl/OfficinaArtificialis</A>
+-----------------------------------------------------------------------------
+
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00004" HREF="msg00004.html">Re: Java compatibility [compilers, etc.]</A></STRONG>
+<UL><LI><EM>From:</EM> Pat &lt;pat@pat.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00027.html">Manual</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00004.html">Re: Java compatibility [compilers, etc.]</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00006.html">Re: Manual, doc tools, code, cvs, sourceForge?</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00004.html">Re: Java compatibility [compilers, etc.]</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00005"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00005"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

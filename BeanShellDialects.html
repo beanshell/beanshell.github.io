@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<h1>Proposal: Domain Syntax Methods (Dialects) for BeanShell</h1>
+
+<p>
+    <em>Note: This is just a very speculative proposal designed to elicit feedback.
+        There are no plans to implement this or anything like it at this time.
+        Finalizing the current release track has top priority.
+    </em>
+</p>
+
+<p>There is a strong desire in any scripting language to add new syntax to support
+    specialized domains such as regular expressions, shell functionality, XML
+    parsing, SQL, etc. Providing this kind of specialized syntax is one of the
+    main appeals of scripting languages. However as each new item is added to a
+    language, the complexity of the grammar grows and each additional feature is
+    forced to become more obscure and cryptic.
+</p>
+
+<p>What I would like to propose is an extensible mechanism for the BeanShell
+    language that allows specialized "domain syntax" to be added in a way that is
+    aesthetically appealing, Java-like, unambiguous with respect to reasonable
+    developments in the Java language, and has almost no effect on the language
+    when not used. The syntax mechanism should be pluggable, allowing
+    developers to easily import their own syntax designs into the language in a
+    way that encourages creativity, but still provides tight enough integration
+    with the core language so as to be used productively and fluidly.
+</p>
+
+<h2>Summary</h2>
+
+<p>The basic proposal here is to extend the notion of a method invocation in Java
+    by allowing one or more arguments to have a "free-form", or non-Java syntax.
+    These "domain syntax methods" or <em>dialects</em> would be responsible for
+    more or less
+    arbitrary parsing of their arguments but with certain required semantics that
+    provide for tight integration with the surrounding BeanShell script
+    environment. Domain methods would extend the concept of the BeanShell eval()
+    method, both providing a traditional return value and producing side effects
+    directly in the caller's scope. The existing eval() method would become a
+    defacto, reflexive, BeanShell dialect.
+</p>
+
+<h2>Syntax</h2>
+
+<p>Begin by considering the current eval() method, which takes a String argument
+    and interprets it as BeanShell script code:
+</p>
+
+<table width="75%" bgcolor="#cccccc">
+    <tr>
+        <td>
+            <pre>
+value = eval( "foo=2; bar=3; someMethod();" );
+</pre>
+        </td>
+    </tr>
+</table>
+</p>
+
+The eval() method does three things: 1) It executes the syntax in the string.
+2) it produces a return value (in lieu of an explicit return it uses the last
+value produced) and 3) it produces side effects. The eval() method is
+<b>unlike</b> a
+normal method in that it can produce side effects directly in the caller's
+scope. For example:
+</p>
+
+<table width="75%" bgcolor="#cccccc">
+    <tr>
+        <td>
+            <pre>
+value = eval( "foo=2; bar=3; someMethod();");
+print( foo ); // 2
+</pre>
+        </td>
+    </tr>
+</table>
+</p>
+
+<p>Now consider what this might look like if we relaxed the requirement that the
+    argument to eval() be a string and allowed it to be "free-form":
+</p>
+
+<p<>
+    <table width="75%" bgcolor="#cccccc">
+        <tr>
+            <td>
+                <pre>
+value = eval( foo=2; bar=3; someMethod(); );
+
+// or
+
+value = eval( 
+    foo=2; 
+    bar=3; 
+    someMethod(); 
+);
+</pre>
+            </td>
+        </tr>
+    </table>
+    </p>
+
+    <p>Now, what if we allowed other kinds of "eval" methods to use arbitrary
+        syntaxes? These "dialect" methods would need to be unambiguously identified,
+        possibly through an explicit import. Here is a wildly speculative example:
+    </p>
+
+    <table width="75%" bgcolor="#cccccc">
+        <tr>
+            <td>
+                <pre>
+import bsh.regex;
+...
+
+String myString = "My name is Pat Niemeyer";
+
+regex( 
+     myString/s/Pat/Patrick/g
+     myString/My name is (\w+) (\w+)/
+     firstName = $1
+     lastName = $2
+);
+
+print( firstName ); // Patrick
+</pre>
+            </td>
+        </tr>
+    </table>
+    <p />
+
+    The main things to notice in the snippet above are that: 1) the import
+    unambiguously identifies the regex() domain syntax method. 2) the syntax
+    within the bounds of the method invocation is completely domain specific
+    (free-form) and may even by line-oriented, as shown above. 3) The syntax has
+    full access to read values from the caller's environment and 4) the syntax
+    produces eval-style side effects (variable assignments and method calls) in
+    the caller's environment.
+    </p>
+
+    As you can see, for expanses of syntax of more than a single line or two, the
+    burden of imposing the method call syntax regex(...); is not great. But,
+    again, it serves two important purposes: to delineate the region of specialized
+    syntax and to indicate to the programmer that something, possibly with a
+    traditional return value, is being evaluated.
+    <p />
+
+    It is the fact that the new syntax can seamlessly work with values and methods
+    from the caller's scope that makes this meaningful. <strong>These new dialects
+        are embedded in BeanShell similar to the way in which BeanShell can be embedded
+        in Java</strong>, via a transparent interpreter boundary. Java becomes the
+    "base" language, BeanShell scales Java from static to dynamic, and dialects
+    allow us to slip into and out of new syntax for as necessary for specific
+    problems.
+    <p />
+
+    <h2>Examples</h2>
+    By making these dialect methods pluggable (with strong requirements, see
+    Implementation below) we can imagine all sorts of appealing additions to the
+    language being created by independent developers. Here are some more
+    speculative possibilities.
+    <p />
+
+    <table width="75%" bgcolor="#cccccc">
+        <tr>
+            <td>
+                <pre>
+// Implement a subset of Bourne Shell functionality
+String myString = "Pat Niemeyer";
+InputStream myStream = url.openStream();
+File myFile = ...;
+
+sh(
+     cat stream > foo.txt
+     lines=`grep "foo" myFile`
+     echo $myString | someApplication
+);
+
+print(lines); // foo this foo that...
+</pre>
+            </td>
+        </tr>
+    </table>
+    <p />
+
+    <table width="75%" bgcolor="#cccccc">
+        <tr>
+            <td>
+                <pre>
+// SQL - Implement specialized SQL syntax
+rowset = sql(
+     open db://somedatabase
+     select * from Foo where Bar
+);
+
+for ( row : rowset )
+     print( row );
+
+</pre>
+            </td>
+        </tr>
+    </table>
+    <p />
+
+    <table width="75%" bgcolor="#cccccc">
+        <tr>
+            <td>
+                <pre>
+// Simple multi-line "here" document
+String myString = doc(
+    This is multi-line text 
+        with a platform specific 
+            line ending...
+    Foo!
+);
+
+String myString = doc( "\n",
+    Maybe this form specifies the line ending for
+        long lines of text
+            like this...
+    Foo!
+);
+
+// Lists could work like this as well...
+List myList = list( { 1, 2, { "foo", "bar" } } );
+</pre>
+            </td>
+        </tr>
+    </table>
+    <p />
+
+    <table width="75%" bgcolor="#cccccc">
+        <tr>
+            <td>
+                <pre>
+// XML and XPath
+Document xmlDoc = xml(
+    &lt;Library&gt;
+        &lt;Book name="Learning Java" category="foo"&gt;
+            &lt;stuff/&gt;
+        &lt;/Book&gt;
+    &lt;/Library&gt;
+);
+
+String myText = ...;
+category = xpath( myText/Library/Book[name="Learning Java"]/@category );
+</pre>
+            </td>
+        </tr>
+    </table>
+    <p />
+
+    <table width="75%" bgcolor="#cccccc">
+        <tr>
+            <td>
+                <pre>
+// Simple "command" style user entry without parens or semicolons
+commands(
+    print 2+2
+    someMethod arg1 arg2
+);
+</pre>
+            </td>
+        </tr>
+    </table>
+    <p />
+
+    <table width="75%" bgcolor="#cccccc">
+        <tr>
+            <td>
+                <pre>
+// Completely crazy things... 
+// Implement a subset of awk for BeanShell, invoking BeanShell methods 
+someMethod( arg ) { ... }
+
+result = bawk(
+    /Name/ {
+        names++;
+        someMethod( $1 );
+    }
+
+    END { print "the end" }
+);
+</pre>
+            </td>
+        </tr>
+    </table>
+    <p />
+
+    <table width="75%" bgcolor="#cccccc">
+        <tr>
+            <td>
+                <pre>
+// Nesting should work...
+list=list();
+
+sh(
+    cd /files
+    foreach f in *.txt
+    do 
+        eval(
+            String path = f.getCanonicalPath();
+            list.add( new URL(path) );          
+        );
+    done;
+);
+</pre>
+            </td>
+        </tr>
+    </table>
+    <p />
+
+    Again, the above are just suggestive of the ways we might use
+    this capability. They are not meant as actual proposals.
+    <p />
+
+
+    <h2>Implementation</h2>
+
+    </p>
+
+    To support the pluggability (via import) of this kind of specialized syntax
+    would
+    require a lightweight pre-parsing stage, where the domain syntax is extracted
+    and at the appropriate time fed to the plugin implementation. There would be
+    some requirements on the dialect plugins including that they not
+    conflict with the simple method invocation syntax (balanced parens), etc.
+    Syntaxes that support variable assignment must work relative to the
+    environment. Furthermore, syntaxes that support method invocation should allow
+    nesting of dialects.
+    <p />
+
+    This could be supported in one of two ways: first, the plugin could simply be
+    given an API paralleling that of the BeanShell namespace with set(), get() and
+    eval() methods. More interestingly, perhaps the plugins could instead be
+    required to generate a BeanShell script as output, which would then be
+    evaluated using the standard eval() method. The script could be annotated with
+    "source" information to allow for domain specific error line reporting.
+    Working through a generated script layer would also preserve the possibility
+    of compiling bsh scripts to a higher performance form in the future.
+    <p />
+
+    In either case, a framework would be developed providing as much support as
+    possible for dialect plug-in writers. It should even be possible to implement
+    simple dialects directly in BeanShell scripts without additional coding.
+    In the extreme, we may wish to provide a simple LEX/YACC dialect as standard,
+    which could use to implement small new grammars directly in scripts.
+    </p>
+
+    <h2>Problems with This Technique</h2>
+    There are many possible issues with this proposal. Probably the largest is the
+    difficulty that domain sytax will add to error reporting should it be used
+    extensively. This problem plagued C++ when templates were first added to
+    the language as a pre-compile step. When there is a layer of indirection it
+    may be difficult for the user to understand the error messages. More
+    specifically, there is the issue of simply determining the extent of the method
+    invocations, should the domain syntax be corrupted. For example, unbalanced
+    parentheses within the specialized syntax.
+    <p />
+
+    These problems should be weighed seriously. However, we should keep in mind
+    that explicit import and the pluggability of these modules means that at worst,
+    complications will only affect users who choose to use them and will not
+    complicate the core language. Plugin writers can choose to implement very
+    sophisticated parsing if they wish and should have access to the entire script
+    body as necessary. Again, we may also be able to ameliorate this situation by
+    providing powerful tools to aid the plugin writers.
+    <p />
+
+
+    <h2>Q&A</h2>
+
+    <strong>
+        Question: Why overload the syntax of a method call? Why not use a new syntax?
+    </strong>
+    <p />
+
+    I'm open to suggestions on this, however here is my thinking. First, any
+    new syntax would tend to fall into two categories: Java-like or deliberately
+    non-Java-like. Non Java-like syntax, for example an XML CDATA section, would
+    tend to be cumbersome and aesthetically unpleasing. Java-like syntax (for
+    example using braces or <>) has the potential to be ambiguous with Java now and
+        in the future. Extending the concept of a method call in this way is appealing
+        for several reasons:
+        <p />
+
+        <ul>
+            <li> In a sense it cannot conflict with Java because the basic construct is
+                already Java.
+            <li> Although these methods can have powerful additional semantics and
+                side-effects, the syntax indicates to a novice user that at some level what they
+                are seeing is just a Java method call with arguments and a return value. It
+                provides a non-jarring, but well scoped region.
+        </ul>
+        <p />
+
+        <strong>
+            Question: Wouldn't reimplementing BeanShell in a meta-language be better?
+        </strong>
+        <p />
+        In theory we could create a new, meta-language in which BeanShell and the Java
+        syntax were simply an application and this would allow arbitrary new syntax to
+        be implemented by users and combined in interesting ways. However I believe
+        that this simpler, plugin based mechanism will be accessible to many more
+        developers (normal programmers will be able to implement new syntax easily if
+        they want to) and will still have has a high degree of integration with the
+        core language through the eval-style semantics. Strong conventions or
+        requirements for type usage will provide even greater cross-syntax integration
+        when they are nested.
+        <p />
+
+        <h2>Request for Comments</h2>
+
+        This proposal will undoubtedly be controversial so I am asking for feedback.
+        All options are on the table. Send feedback to
+        <a href="mailto:pat@pat.net">pat@pat.net</a>
+        </p>

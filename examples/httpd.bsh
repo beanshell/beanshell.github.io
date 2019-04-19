@@ -1,0 +1,52 @@
+httpd( int port ) { 
+
+    run() {
+        while ( true ) {
+            con = connection( ss.accept() );
+            new Thread( con ).start();
+        }
+    }
+
+    connection( Socket client ) {
+        run() {
+            try {
+                BufferedReader in = new BufferedReader( 
+                    new InputStreamReader(client.getInputStream(), "8859_1") );
+                OutputStream out = new BufferedOutputStream( 
+                    client.getOutputStream() );
+                PrintWriter pout = new PrintWriter( 
+                    new OutputStreamWriter(out, "8859_1"), true );
+                String request = in.readLine();
+                print( "Servicing request: "+request );
+
+                StringTokenizer st = new StringTokenizer( request );
+                if ( (st.countTokens() >= 2) && st.nextToken().equals("GET") ) {
+                    if ( (request = st.nextToken()).startsWith("/") )
+                        request = request.substring( 1 );
+                    if ( request.endsWith("/") || request.equals("") )
+                        request = request + "index.html";
+                    try {   
+                        FileInputStream fis = new FileInputStream ( request );
+                        byte [] data = new byte [ fis.available() ];
+                        fis.read( data );
+                        out.write( data );
+                        out.flush();
+                    } catch ( FileNotFoundException e ) {
+                        print("file not found...");
+                        pout.println( "404 Object Not Found" ); }
+                } else 
+                    pout.println( "400 Bad Request" );
+                client.close();
+            } catch ( IOException e ) {
+                print( "I/O error " + e ); }
+        }
+
+        return this;
+    }
+
+    ServerSocket ss = new ServerSocket( port );
+    print("starting httpd on port: "+port);
+    t = new Thread( this );
+    t.start();
+    return t;
+}

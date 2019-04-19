@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>BeanShell Demos</title>
+</head>
+<body>
+
+<h2>BeanShell Demos - Unsigned Applets</h2>
+<p>
+This page test the capability of BeanShell to run as an applet in
+an untrusted / secure environment.
+In this case the BeanShell interpreter is running within the JVM of your 
+web browser and is therefore limited by the applet security policy.   
+Not all features of BeanShell are available in this environment.  In
+particular, applets are not allowed inspect non-public members of objects
+or to create classloaders.  This means that the BeanShell interpreter, when
+running in an applet, can only access public methods of public APIs and cannot
+define its own classes.  You *can*, on the other hand, create Java interfaces
+and BeanShell scripted objects.
+<p>
+
+These applets have been compiled with Java 1.3 and are bundled with the full
+distribution jar.  However, BeanShell supports limited functionality
+for versions of Java as early as 1.1 and a smaller JAR size can be achieved
+by distributing only the core components.
+<p>
+
+<h3>Swing Desktop - Unsigned Applet</h3>
+To use the Swing based desktop in a separate top level frame.  This requires
+the Java plug-in or other swing capable browser:
+<p>
+
+<a href="jbshdemodesk.html">BeanShell Demo with Swing Desktop in Frame</a>
+<p>
+
+
+<h3>Swing JConsole - Unsigned Applet</h3>
+To use a single Swing enabled console (shell) embedded in the page
+with the Java plug-in or other swing capable browser:
+<p>
+
+<a href="jbshdemo.html">BeanShell Demo with Swing Console</a>
+<p>
+
+<h3>AWT Console - Unsigned Applet</h3>
+To use the minimal (not very good) AWT based console that should work in any
+browser:
+<p>
+
+<a href="awtbshdemo.html">BeanShell Demo with simple AWT Console</a>
+<p>
+
+<hr>
+For more information see the BeanShell home page:
+<a href="http://www.beanshell.org">http://www.beanshell.org</a>
+
+</body>
+</html>

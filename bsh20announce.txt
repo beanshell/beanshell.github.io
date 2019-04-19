@@ -1,0 +1,161 @@
+
+Announcement - BeanShell 2.0b1
+------------------------------
+
+After several months of intense work I am pleased to announce the first beta
+release of BeanShell 2.0.  With version 2.0 BeanShell becomes a fully Java
+compatible scripting language.  BeanShell is now capable of interpreting 
+ordinary Java source and loading .java source files from the class path.  
+Although this code is still in beta I have been able to execute almost all of 
+the 165 example programs from my book (Learning Java, O'Reilly & Associates) 
+without modification as well as BeanShell's own ClassBrowser.java file.
+The additional code to make this possible adds only about 30K to the size
+of the package and the core minimal language distribution without class support
+remains less than 150K.
+
+BeanShell scripted classes are fully typed and appear to outside Java code and
+via reflective inspection as ordinary classes.  However their implementation is
+fully dynamic and they may include arbitrary BeanShell scripts in their bodies,
+methods, and constructors.  Users may now freely mix loose, unstructured
+BeanShell scripts, method closures, and full scripted classes.  BeanShell
+scripted classes are "bound" in the script namespace in which they are declared
+and so can freely refer to other scripted items such as scripted methods,
+commands, and "global" variables of the script. e.g.
+
+    // MyScript.bsh
+    count = 5;
+
+    class HelloWorld extends Thread {
+        public void run() {
+           for(i=0; i<count; i++)
+              print("Hello World!");
+        }     
+    }
+
+    new HelloWorld().start();
+
+All methods and constructors of the scripted classes delegate to the BeanShell
+interpreter at runtime and all typed variables appear as true class members.
+Loosely typed variables and methods may still be used inside the class but are
+strictly private to the class body.  
+
+Previous limitations on the implementation of anonymous inner classes have also
+been lifted, allowing BeanShell to extend arbitrary Java classes and implement
+abstract base classes.
+
+BeanShell 2.0 also brings with it two new language features:
+
+JDK 1.5 style static class imports.  You can import the static methods and
+fields of a java Class into a BeanShell namespace. e.g. 
+
+    static import java.lang.Math.*;
+    sqrt(4.0);
+
+Instance object imports (mix-ins) with the importObject() command.  You can
+import the methods and fields of a Java object instance into a BeanShell
+namespace.  e.g.
+
+    Map map = new HashMap();
+    importObject( map );
+    put("foo", "bar");
+    print( get("foo") ); // "bar"
+
+
+Version 1.3.0 Final
+-------------------
+
+In conjunction with the 2.0 beta release version 1.3.0 has been declared final. 
+Version 1.3.0 fixes one major bug introduced with properties-style variable
+allocation.  Additional bug fixes appear in the 2.0 code.
+
+
+Getting Started
+---------------
+
+Download the bet release from http://www.beanshell.org/download.html.
+
+You may launch a class source file containing a static main() method as you 
+would any other bsh script. e.g.
+
+  java bsh.Interpreter bsh/util/ClassBrowser.java
+
+or, if you use the script launcher:
+
+  bsh bsh/util/ClassBrowser.java
+
+You may also simply source the .java files or script classes directly in your 
+ordinary BeanShell scripts.
+
+The BeanShell Users's Manual has not yet been updated for version 2.0, but
+please check back soon for updates.
+
+
+Known Issues with BeanShell 2.0b1
+---------------------------------
+
+- Class generation currently requires reflective accessibility security
+permissions (will probably not work under a tight security policy or in an
+applet).  BeanShell currently installs generated classes directly in the
+current classloader by accessing the protected defineClass() method.
+
+- In order to run a class file's main method with arguments from the command 
+line the class containing your main method must be the last item in the
+file.  i.e. The public class declaration must currently be the last declaration
+in the file.  (You can alternately just source() the file into your script and
+invoke the main() method as any other static method).
+
+- Static final fields (constants) in interfaces are currently broken.
+(BeanShell will error when you attempt to declare them).
+
+- Non-static inner classes are currently implemented in a non-standard way
+(using mix-ins) so mixing interpreted classes with their pre-compiled inner
+classes will not work properly in all cases.
+
+- Inner classes are not properly "imported" in some cases. e.g. Class A
+contains one ormore inner classes.  Class B extends class A and attempt to
+refer to those inner classes by their unqualified names.
+
+- Static blocks in the class body are not yet implemented.
+
+- If you have a source class at the wrong place in the classpath you may get a
+non-fatal error when bsh attempts to load the class again.
+
+- The existing BeanShell deficiency relating to postfix array operators comes
+up more often now.  e.g. public static void main( String args [] ); will
+not parse...  use "String [] args" instead.
+
+
+Developer Notes
+---------------
+
+The source for BeanShell 2.0 is not yet in CVS but will be soon.
+
+The debugClasses property can be used to save generated class files. e.g.
+  -DdebugClasses=<outputDir>
+However these persisted class files will not yet function outside of the
+classloader in which they were created (the script body is not currently 
+persisted with the class).
+
+
+The ASM bytecode library
+------------------------
+
+To generate the necessary bytecode for BeanShell's dynamic classes at runtime
+we have incorporated with permission a subset of the ASM bytecode library from 
+Objectweb (http://asm.objectweb.org).  ASM is a remarkably efficient, fast, 
+and easy to use bytecode generator that weighs in at only 22K.  (The subset
+we use is only about 17K.)   If you are using BCEL or SERP please check out
+ASM as a light weight alternative.
+
+
+Roadmap
+-------
+
+Since the new code is fairly stable I would like to work towards finalizing
+version 2.0.0 as soon as possible rather than pushing version 1.3.0 as widely 
+as planned.  Your feedback and comments will help this greatly.
+
+
+Thanks,
+Pat Niemeyer
+

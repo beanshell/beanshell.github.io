@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>BeanShell - BeanShell User Info Form </title>
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="css/my_styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<aside>
+	<nav>
+		<ul class="menu">
+
+			<li><a href="home.html">Home</a>
+			</li>
+			<li><a href="intro.html">Intro</a>
+			</li>
+			<li> <a href="docs.html">Docs</a>
+			</li>
+			<li> <a href="download.html">Download</a>
+			</li>
+			<li> <a href="contact.html">Contact</a>
+			</li>
+			<li> <a href="https://github.com/beanshell/beanshell/wiki">
+					Community Wiki</a>
+			</li>
+			<li> <a href="developer.html">Developer</a>
+			</li>
+			<li> <a href="license.html">License</a>
+			</li>
+			<li> <a href="beany.html">Beany</a>
+			</li>
+			<li> <a href="http://www.amazon.com/exec/obidos/ASIN/0596002858">
+					<img alt="Learning Java" src="images/lj2.png" width="100px"> <br>
+					<span class="small"> Check out my book:<br>
+						Learning Java,<br>
+						O'Reilly &amp; Associates </span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<article>
+
+	<section>
+		<h1>BeanShell User Info Form </h1>
+		<h2>BeanShell User Info Form</h2>
+
+		<p>This is the BeanShell User Info form. Please use it to tell us how you
+			are using BeanShell. Please see also the
+			<a href="license.html">BeanShell Free Software License</a>.</p>
+
+		<form method="POST" action="/cgi-sys/formmail.pl">
+
+			<input type="hidden" name="recipient" value="bsh-license@pat.net">
+			<input type="hidden" name="subject" value="Beanshell License Mail">
+			<input type="hidden" name="redirect" value="http://www.beanshell.org/mailresponse.html">
+
+			<table cellpadding="4">
+				<tr>
+					<td bgcolor="#bbbbbb"><strong>Name:</strong></td>
+					<td><input size="40" name="name"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#bbbbbb"><strong>Organization:</strong></td>
+					<td>
+						<input size="40" name="organization"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#bbbbbb"><strong>Email address:</strong></td>
+					<td>
+						<input size="40" name="email"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#bbbbbb"><strong>URL:</strong></td>
+					<td>
+						<input size="40" name="url"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#bbbbbb"><strong>How do you plan to use
+							BeanShell?</strong><br>
+						(Feel free to <a href="mailto:pat@pat.net">send email</a> rather than use
+						this cramped form)
+					</td>
+					<td>
+						<textarea rows="8" cols="40" name="use"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td bgcolor="#aaccaa">
+						<strong>What is the most important feature missing from BeanShell?</strong>
+					</td>
+					<td>
+						<textarea rows="5" cols="40" name="missing"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td bgcolor="#aaccaa"><strong>Other comments?</strong><br>
+					</td>
+					<td>
+						<textarea rows="5" cols="40" name="other"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="submit" value="Submit Form">
+					</td>
+				</tr>
+
+			</table>
+		</form>
+
+	</section>
+</article>
+</body>
+
+</html>

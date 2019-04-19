@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<h2>BeanShell Applet</h2>
+
+<em>Note: bsh requires a Java 1.1 compliant web browser such as
+	<a href="http://java.sun.com/">HotJava 1.0 or 1.1</a>,
+	Netscape Navigator 4.03 or 4.04 with the
+	<a href="http://developer.netscape.com/software/jdk/download.html">
+		<strong>additional final 1.1 support patch</strong></a>, or the JDK 1.1.x
+	appletviewer. I haven't seen the applet work with Netscape 4.05, MSIE 4.0+,
+	or the JDK1.2 betas.
+</em>
+<p>
+
+	Remember that as an applet bsh is limited by the applet security model.
+	For full access to system resources you should
+	<a href="download.html">download bsh</a> and run it stand-alone.
+	<p>
+
+		Tip: You can get a console window in an external frame at any time by typing:
+		console() at the prompt. Use the editor() command for an editor window.
+		<p>
+
+			<applet height=300 width=600 code="bsh.BshApplet" archive="bsh.jar">
+			</applet>
+
+			<p>
+				<hr>
+				<p>
+
+					If you haven't already done so, please take a second to add your name as a user:
+					<form method="POST" action="/cgi-sys/formmail.pl">
+
+						<input type=hidden name="recipient" value="beanshell@pat.net">
+						<input type=hidden name="subject" value="Beanshell Automail">
+						<input type=hidden name="redirect" value="http://www.beanshell.org/mailresponse.html">
+
+						<p>
+							<strong>BeanShell Announce</strong> -
+							This list is only for announcements about major new releases.
+							To subscribe, please send a message to:<br>
+							<a href="mailto:bsh-announce@pat.net">bsh-announce@pat.net</a>,
+							or submit your email address below:<br>
+							<input size=20 name="subscribe-announce"><input type=submit value="subscribe">
+							<p>
+					</form>
+					<hr>

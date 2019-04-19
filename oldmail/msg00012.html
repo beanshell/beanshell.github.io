@@ -1,0 +1,131 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Re: BeanShell suggestions -->
+<!--X-From: Pat <pat@pat.net> -->
+<!--X-Date: Fri, 12 Nov 1999 19:58:09 &#45;0600 (CST) -->
+<!--X-Message-Id: 19991112195022.29112@pat.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: Pine.SO4.4.05.9911121850330.262&#45;100000@jifsan.cs.umd.edu -->
+<!--X-Reference: Pine.SO4.4.05.9911121850330.262&#45;100000@jifsan.cs.umd.edu -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: BeanShell suggestions</TITLE>
+<LINK REV="made" HREF="mailto:pat@pat.net">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00009.html">Date Prev</A>][<A HREF="msg00013.html">Date Next</A>][<A HREF="msg00030.html">Thread Prev</A>][<A HREF="msg00013.html">Thread Next</A>][<A HREF="maillist.html#00012">Date Index</A>][<A HREF="threads.html#00012">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Re: BeanShell suggestions</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Sean Luke &lt;<A HREF="mailto:seanl@cs.umd.edu">seanl@cs.umd.edu</A>&gt;</LI>
+<LI><em>Subject</em>: Re: BeanShell suggestions</LI>
+<LI><em>From</em>: Pat &lt;<A HREF="mailto:pat@pat.net">pat@pat.net</A>&gt;</LI>
+<LI><em>Date</em>: Fri, 12 Nov 1999 19:50:22 -0600</LI>
+<LI><em>Cc</em>: <A HREF="mailto:paulk@mathworks.com">paulk@mathworks.com</A>, <A HREF="mailto:users@beanshell.org">users@beanshell.org</A>, <A HREF="mailto:developers@beanshell.org">developers@beanshell.org</A></LI>
+<LI><em>In-Reply-To</em>: &lt;Pine.SO4.4.05.9911121850330.262-100000@jifsan.cs.umd.edu&gt;; from Sean Luke on Fri, Nov 12, 1999 at 07:10:04PM -0500</LI>
+<LI><em>Mail-Followup-To</em>: Sean Luke &lt;seanl@cs.umd.edu&gt;, paulk@mathworks.com,users@beanshell.org, developers@beanshell.org</LI>
+<LI><em>References</em>: &lt;Pine.SO4.4.05.9911121850330.262-100000@jifsan.cs.umd.edu&gt;</LI>
+<LI><em>Reply-To</em>: <A HREF="mailto:pat@pat.net">pat@pat.net</A></LI>
+<LI><em>Resent-Date</em>: Fri, 12 Nov 1999 20:58:16 -0500</LI>
+<LI><em>Resent-From</em>: users@beanshell.org</LI>
+<LI><em>Resent-Message-ID</em>: &lt;"uNaDP.A.1sE.0WML4"@host3.cedant.com&gt;</LI>
+<LI><em>Resent-Sender</em>: users-request@beanshell.org</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Fri, Nov 12, 1999 at 07:10:04PM -0500, Sean Luke wrote:
+&gt; 
+&gt; That being said, there's a simple modification that I think would make all
+&gt; the difference to a large number of BeanShell/JDE users like myself.  I've
+&gt; noticed that something along the lines of 90% of the BeanShell usage I do
+&gt; is for one thing: evaluating expressions to see what they return.
+&gt; Amazingly, BeanShell doesn't provide this natively, so if I have
+&gt; expression Foo, which typically returns, say, an integer, I have to write
+&gt; it as:
+&gt; 
+&gt; 	bsh % System.out.println(FOO);
+
+Two important things -
+
+First, there is something called the "show()" command that toggles on 
+automatic printing of results (except null).
+
+Second, in bsh 1.0 I fixed the "expression on the command line" problem 
+so that you can simply type "2*2" instead of "(2*2)".
+
+So I think everything you want is accomplished by upgrading to bsh 1.0
+and turning on show();
+
+It's likely that turning on show should be the default within the JDE...
+This could be accomplished with a default start up script in some way.
+
+Also new in 1.0 you can have a startup script (.rc file) in your home dir
+or in the Java system home dir.
+
+I'm sorry the documentation hasn't necessarily caught up with all of this yet.
+
+Please see <A  HREF="http://www.beanshell.org/changes.html">http://www.beanshell.org/changes.html</A> for some more info about
+the startup files.
+
+
+Thanks,
+Pat
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00013" HREF="msg00013.html">Re: BeanShell suggestions</A></STRONG>
+<UL><LI><EM>From:</EM> Sean Luke &lt;seanl@cs.umd.edu&gt;</LI></UL></LI>
+<LI><STRONG><A NAME="00029" HREF="msg00029.html">Re: BeanShell suggestions</A></STRONG>
+<UL><LI><EM>From:</EM> Pat &lt;pat@pat.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00009.html">Importing</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00013.html">Re: BeanShell suggestions</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00030.html">Re: BeanShell : Separating parsing from evaluation</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00013.html">Re: BeanShell suggestions</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00012"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00012"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

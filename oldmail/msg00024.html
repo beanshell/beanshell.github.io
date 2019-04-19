@@ -1,0 +1,127 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Re: Closure failure? [ How they work ] -->
+<!--X-From: nathanw@MIT.EDU (0000&#45;Admin(0000)) -->
+<!--X-Date: Wed, 16 Feb 2000 23:33:24 &#45;0600 (CST) -->
+<!--X-Message-Id: ln4k5r7g.fsf@hodge&#45;podge.mit.edu -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: mtuzot07jsb.fsf@hodge&#45;podge.mit.edu -->
+<!--X-Reference: 20000216224404.24837@pat.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Closure failure? [ How they work ]</TITLE>
+<LINK REV="made" HREF="mailto:nathanw@MIT.EDU">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00023.html">Date Prev</A>][<A HREF="msg00034.html">Date Next</A>][<A HREF="msg00023.html">Thread Prev</A>][<A HREF="msg00034.html">Thread Next</A>][<A HREF="maillist.html#00024">Date Index</A>][<A HREF="threads.html#00024">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Re: Closure failure? [ How they work ]</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: <A HREF="mailto:pat@pat.net">pat@pat.net</A></LI>
+<LI><em>Subject</em>: Re: Closure failure? [ How they work ]</LI>
+<LI><em>From</em>: <A HREF="mailto:nathanw@MIT.EDU">nathanw@MIT.EDU</A> (0000-Admin(0000))</LI>
+<LI><em>Date</em>: 17 Feb 2000 00:32:51 -0500</LI>
+<LI><em>Cc</em>: <A HREF="mailto:users@beanshell.org">users@beanshell.org</A>, <A HREF="mailto:developers@beanshell.org">developers@beanshell.org</A></LI>
+<LI><em>In-Reply-To</em>: Pat's message of "Wed, 16 Feb 2000 22:44:04 -0600"</LI>
+<LI><em>References</em>: &lt;mtuzot07jsb.fsf@hodge-podge.mit.edu&gt; &lt;<A HREF="msg00023.html">20000216224404.24837@pat.net</A>&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Pat &lt;pat@pat.net&gt; writes:
+
+&gt; I can see how this would be confusing, but I'm afraid that it's currently
+&gt; the expected behavior.  The problem with loosening up the language such that
+&gt; you don't have to declare variables is that you don't have a clear way to
+&gt; determine where they are intended to be declared vs. where they are simply
+&gt; being assigned.  The most general solution (and the one that BeanShell
+&gt; currently uses) is that variablas are declared wherever they are assigned
+&gt; and if you want to assign a variable in a parent scope you have to use a
+&gt; modifier...
+
+The observed behaviour is still sort of odd.
+
+I haven't managed to grovel through enough of the interpreter to
+verify this, so could you check my reasoning here:
+
+- The first use (rvalue, in the first print) is resolved to x in the
+  scope of ctest().
+
+- The second use (rvalue, in "x + 1") resolves the same way.
+
+
+- The third use (lvalue, in "x = x + 1") causes the creation of a new
+  variable in the scope of subfunc() and assigns the value there. 
+
+- The fourth use (rvalue, in the second print) resolves to the
+  newly-minted x in the scope of subfunc().
+
+If this is right, it's really the generation of the new binding in the
+third use that seems goofy. Why is it necessary to create the new
+local binding when you can test for the existence of a binding in an
+outer scope?
+
+&gt; I agree that this is not linguistically pleasant and it bothers me that it
+&gt; diverges from Java in a sense...  however Java doesn't allow defining methods
+&gt; within methods, so it's not entirely divergent.
+
+I guess if you don't count local and anonymous classes (reasonable,
+since they don't support real closures either).
+
+        - Nathan
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00023" HREF="msg00023.html">Re: Closure failure? [ How they work ]</A></STRONG>
+<UL><LI><EM>From:</EM> Pat &lt;pat@pat.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00023.html">Re: Closure failure? [ How they work ]</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00034.html">Console no-go</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00023.html">Re: Closure failure? [ How they work ]</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00034.html">Console no-go</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00024"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00024"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

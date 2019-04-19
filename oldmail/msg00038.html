@@ -1,0 +1,103 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Re: Loading a partial script -->
+<!--X-From: Pat <pat@pat.net> -->
+<!--X-Date: Tue, 1 Aug 2000 15:44:16 &#45;0500 -->
+<!--X-Message-Id: 20000801154416.43039@pat.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: jUsT.aNoTheR.mEsSaGe.iD.9650429665212@mailreader.com -->
+<!--X-Reference: jUsT.aNoTheR.mEsSaGe.iD.9650429665212@mailreader.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Loading a partial script</TITLE>
+<LINK REV="made" HREF="mailto:pat@pat.net">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00039.html">Date Prev</A>][Date Next][<A HREF="msg00039.html">Thread Prev</A>][Thread Next][<A HREF="maillist.html#00038">Date Index</A>][<A HREF="threads.html#00038">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Re: Loading a partial script</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: <A HREF="mailto:johannes@brodwall.com">johannes@brodwall.com</A></LI>
+<LI><em>Subject</em>: Re: Loading a partial script</LI>
+<LI><em>From</em>: Pat &lt;<A HREF="mailto:pat@pat.net">pat@pat.net</A>&gt;</LI>
+<LI><em>Date</em>: Tue, 1 Aug 2000 15:44:16 -0500</LI>
+<LI><em>In-Reply-To</em>: &lt;jUsT.aNoTheR.mEsSaGe.iD.9650429665212@mailreader.com&gt;; from Johannes Brodwall on Mon, Jul 31, 2000 at 01:04:37PM +0200</LI>
+<LI><em>References</em>: &lt;jUsT.aNoTheR.mEsSaGe.iD.9650429665212@mailreader.com&gt;</LI>
+<LI><em>Reply-To</em>: <A HREF="mailto:pat@pat.net">pat@pat.net</A></LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Mon, Jul 31, 2000 at 01:04:37PM +0200, Johannes Brodwall wrote:
+&gt; 
+&gt; Hi list,
+&gt; I have found Beanshell useful for prototyping and for exploratory 
+&gt; programming.  However, I cannot find any way to save and reload a 
+&gt; run, which would be very useful for these purposes.
+&gt; 
+&gt; To be more specific, I would like to be able to capture the commands 
+&gt; executed in the current run of the interpreter into a file, and then 
+&gt; later reload it (e.g. with the "source" command).  Is there a command 
+&gt; to do this/does anyone know how to add such a command?
+
+There is some partial support for saving bsh commands and loading them
+again...  bsh objects are serializable.  However this wasn't really supported
+fully in the 1.0 release.
+
+In 2.0 I hope to provide an easy to use save workspace and load workspace
+feature...  as well as make sure that all bsh scripted objects are
+serialiable.
+
+You might experiment with saving a bsh object (say 'this' for the current
+context of your shell) and reloading it.  But I'm not sure how well it will
+work.  
+
+Check back soon as I hope to resume work on bsh shortly.
+
+
+Pat
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00039.html">Re: BeanShell Thread Safety</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00039.html">Re: BeanShell Thread Safety</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00038"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00038"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

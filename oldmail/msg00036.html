@@ -1,0 +1,115 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Re: Re&#45;reading an edited class definition -->
+<!--X-From: Pat <pat@pat.net> -->
+<!--X-Date: Wed, 26 Jan 2000 22:40:00 &#45;0600 -->
+<!--X-Message-Id: 20000126223959.31321@pat.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: LPBBIPBGLFMLNLFMGFFGAEBKCAAA.crirvine1@email.msn.com -->
+<!--X-Reference: LPBBIPBGLFMLNLFMGFFGAEBKCAAA.crirvine1@email.msn.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Re-reading an edited class definition</TITLE>
+<LINK REV="made" HREF="mailto:pat@pat.net">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00021.html">Date Prev</A>][<A HREF="msg00032.html">Date Next</A>][<A HREF="msg00021.html">Thread Prev</A>][<A HREF="msg00032.html">Thread Next</A>][<A HREF="maillist.html#00036">Date Index</A>][<A HREF="threads.html#00036">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Re: Re-reading an edited class definition</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Chuck Irvine &lt;<A HREF="mailto:crirvine1@email.msn.com">crirvine1@email.msn.com</A>&gt;,BeanShellMailingList &lt;<A HREF="mailto:users@beanshell.org">users@beanshell.org</A>&gt;,<A HREF="mailto:developers@beanshell.org">developers@beanshell.org</A></LI>
+<LI><em>Subject</em>: Re: Re-reading an edited class definition</LI>
+<LI><em>From</em>: Pat &lt;<A HREF="mailto:pat@pat.net">pat@pat.net</A>&gt;</LI>
+<LI><em>Date</em>: Wed, 26 Jan 2000 22:40:00 -0600</LI>
+<LI><em>Approved</em>: pat@pat.net</LI>
+<LI><em>Cc</em>: <A HREF="mailto:chuck.irvine@mail.sprint.com">chuck.irvine@mail.sprint.com</A></LI>
+<LI><em>In-Reply-To</em>: &lt;<A HREF="msg00021.html">LPBBIPBGLFMLNLFMGFFGAEBKCAAA.crirvine1@email.msn.com</A>&gt;; from Chuck Irvine on Wed, Jan 26, 2000 at 07:54:38PM -0600</LI>
+<LI><em>Mail-Followup-To</em>: Chuck Irvine &lt;crirvine1@email.msn.com&gt;,BeanShellMailingList &lt;users@beanshell.org&gt;,developers@beanshell.org, chuck.irvine@mail.sprint.com</LI>
+<LI><em>References</em>: &lt;<A HREF="msg00021.html">LPBBIPBGLFMLNLFMGFFGAEBKCAAA.crirvine1@email.msn.com</A>&gt;</LI>
+<LI><em>Reply-To</em>: <A HREF="mailto:pat@pat.net">pat@pat.net</A></LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Wed, Jan 26, 2000 at 07:54:38PM -0600, Chuck Irvine wrote:
+&gt; Say I have a class, Foo, that I am working on and I am ready to test it
+&gt; using bsh. So I do something like:
+&gt; 
+&gt; Bsh % Foo f = new Foo();   // create an object
+&gt; Bsh % f.test(); // test the function test
+&gt; 
+&gt; Now I find a problem in test() and recode it. In this case, I have not
+&gt; discovered how to get bsh to re-read in the new definition of Foo. What I
+&gt; have to do is exit and re-start bsh. Is there a way to re “source” class,
+&gt; and, if so, how? Actually, I see that there is a “source” built in function,
+&gt; but it doesn’t seem to have the hoped for function.
+
+To have the capability of reloading classes we'll need to use an explicit
+classloader.  In JDK1.2+ there is the java.net.URLClassLoader which is quite
+easy to use.  It should be possible to simply load your classes through it 
+and then throw it away and reload them.
+
+I'd like to add some built in support for this in BeanShell in an upcoming
+release.  I just haven't determined all of the ramifications.  It is a pretty
+high priority desired feature.
+
+
+Pat
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00021" HREF="msg00021.html">Re-reading an edited class definition</A></STRONG>
+<UL><LI><EM>From:</EM> "Chuck Irvine" &lt;crirvine1@email.msn.com&gt;</LI></UL></LI>
+<LI><STRONG><A NAME="00021" HREF="msg00021.html">Re-reading an edited class definition</A></STRONG>
+<UL><LI><EM>From:</EM> "Chuck Irvine" &lt;crirvine1@email.msn.com&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00021.html">Re-reading an edited class definition</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00032.html">Article at JDJ, that covers BeanShell.</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00021.html">Re-reading an edited class definition</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00032.html">Article at JDJ, that covers BeanShell.</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00036"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00036"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

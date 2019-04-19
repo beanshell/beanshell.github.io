@@ -1,0 +1,60 @@
+<html>
+<head><title>BeanShell Example - A scripted ActionListener Interface</title></head>
+<body bgcolor="#ffffff">
+
+<a href="../home.html"><img border=0 src="../images/homebutton.gif"><br>Home</a>
+<p>
+
+<h1>A scripted ActionListener Interface</h1>
+
+<p>
+<center>
+<table width=100% cellpadding=5>
+<tr><td bgcolor="#afafac">
+<font size=+1><a href="CallScriptedActionHandler.java">CallScriptedActionHandler.java</a> - Link a button to a scripted ActionListener</font>
+</td></tr>
+<tr><td bgcolor="#cfcfcc">
+<pre>
+import javax.swing.*;
+import java.awt.event.ActionListener;
+import bsh.Interpreter;
+
+public class CallScriptedActionHandler {
+    public static void main( String [] args ) throws Exception {
+
+        JButton button = new JButton("MyButton");
+        button.addActionListener( 
+            (ActionListener)new Interpreter().source("actionHandler.bsh") );
+
+        JFrame f = new JFrame();
+        f.getContentPane().add( button );
+        f.show();
+    }
+}
+</pre>
+</td></tr>
+</table>
+</center>
+<p>
+
+<p>
+<center>
+<table width=100% cellpadding=5>
+<tr><td bgcolor="#afefac">
+<font size=+1><a href="actionHandler.bsh">actionHandler.bsh</a> - The scripted ActionListener</font>
+</td></tr>
+<tr><td bgcolor="#cfefcc">
+<pre>
+import java.awt.event.ActionListener;
+
+actionPerformed( e ) {
+    print("Button Pressed: " + e);
+}
+
+return (ActionListener)this;
+</pre>
+</td></tr>
+</table>
+</center>
+<p>
+

@@ -1,0 +1,134 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Re: BeanShell : Separating parsing from evaluation -->
+<!--X-From: Pat <pat@pat.net> -->
+<!--X-Date: Fri, 19 Nov 1999 14:23:16 &#45;0600 -->
+<!--X-Message-Id: 19991119142316.56112@pat.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 19991113013504.56827@pat.net -->
+<!--X-Reference: 000501bf2f57$7d3be240$0f3031c1@univtlse1.fr -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: BeanShell : Separating parsing from evaluation</TITLE>
+<LINK REV="made" HREF="mailto:pat@pat.net">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00010.html">Date Prev</A>][<A HREF="msg00011.html">Date Next</A>][<A HREF="msg00001.html">Thread Prev</A>][<A HREF="msg00012.html">Thread Next</A>][<A HREF="maillist.html#00030">Date Index</A>][<A HREF="threads.html#00030">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Re: BeanShell : Separating parsing from evaluation</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Rémi Bastide &lt;<A HREF="mailto:bastide@cict.fr">bastide@cict.fr</A>&gt;</LI>
+<LI><em>Subject</em>: Re: BeanShell : Separating parsing from evaluation</LI>
+<LI><em>From</em>: Pat &lt;<A HREF="mailto:pat@pat.net">pat@pat.net</A>&gt;</LI>
+<LI><em>Date</em>: Fri, 19 Nov 1999 14:23:16 -0600</LI>
+<LI><em>Approved</em>: pat@pat.net</LI>
+<LI><em>Cc</em>: <A HREF="mailto:users@beanshell.org">users@beanshell.org</A>, <A HREF="mailto:developers@beanshell.org">developers@beanshell.org</A></LI>
+<LI><em>In-Reply-To</em>: &lt;000501bf2f57$7d3be240$0f3031c1@univtlse1.fr&gt;; from Rémi Bastide on Mon, Nov 15, 1999 at 11:52:19AM +0100</LI>
+<LI><em>Mail-Followup-To</em>: Rémi Bastide &lt;bastide@cict.fr&gt;,users@beanshell.org, developers@beanshell.org</LI>
+<LI><em>References</em>: &lt;<A HREF="msg00001.html">19991113013504.56827@pat.net</A>&gt; &lt;000501bf2f57$7d3be240$0f3031c1@univtlse1.fr&gt;</LI>
+<LI><em>Reply-To</em>: <A HREF="mailto:pat@pat.net">pat@pat.net</A></LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Mon, Nov 15, 1999 at 11:52:19AM +0100, Rémi Bastide wrote:
+&gt; Hi Pat,
+&gt; 
+&gt; Thanks for your continuous improvement of BeanShell, which has become a very
+&gt; important piece of our research product.
+&gt; 
+&gt; I wonder of difficult it would be to separate in BeanShell the parsing of an
+&gt; expression from its evaluation. This would be very valuable in our app,
+&gt; where an expression is entered once by the user, and then evaluated a number
+&gt; of times.
+&gt; 
+&gt; I dream to be able to do this :
+&gt; 
+&gt; bsh.Interpreter i = ...
+&gt; String anExpression = ...
+&gt; ParsedExpression e; // Opaque class to represent an evaluable expression
+&gt; pre-parsed by BeanShell
+&gt; 
+&gt; try {
+&gt; 	e = i.parse(anExpression);
+&gt; } catch (bsh.ParseError e) {
+&gt; 	// The expression is syntaxically incorrect
+&gt; 	return false;
+&gt; }
+
+I believe this is exactly what is accomplished by evaluating the method
+delcaration in the interpreter.. and then later using that interpreter to
+invoke the method with arguments...
+
+e.g.
+    interpreter.eval("foo(a,b) { ... } ");
+    // later
+    interpreter.eval("foo(1,2)");
+
+The internal form of the parsed method is a BSHMethodDeclaration node, not
+the original text.
+
+Variable resolution from the enclosing context (probably the root interpreter
+context in your case) will happen at invocation time.
+
+Does this make sense?  Or am I missing your point.
+
+
+Pat
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00001" HREF="msg00001.html">Re: Importing</A></STRONG>
+<UL><LI><EM>From:</EM> Pat &lt;pat@pat.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00010.html">Re: BeanShell suggestions</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00011.html">Exceptions not being handled (or thrown correctly)</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00001.html">Re: Importing</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00012.html">Re: BeanShell suggestions</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00030"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00030"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

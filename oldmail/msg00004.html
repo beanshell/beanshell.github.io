@@ -1,0 +1,140 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Re: Java compatibility [compilers, etc.] -->
+<!--X-From: Pat <pat@pat.net> -->
+<!--X-Date: Tue, 14 Mar 2000 11:06:02 &#45;0600 -->
+<!--X-Message-Id: 20000314110602.60668@pat.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 38CD6D28.A40ECB0B@linart.pl -->
+<!--X-Reference: 38CD6D28.A40ECB0B@linart.pl -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Java compatibility [compilers, etc.]</TITLE>
+<LINK REV="made" HREF="mailto:pat@pat.net">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00005.html">Date Prev</A>][<A HREF="msg00025.html">Date Next</A>][<A HREF="msg00005.html">Thread Prev</A>][<A HREF="msg00007.html">Thread Next</A>][<A HREF="maillist.html#00004">Date Index</A>][<A HREF="threads.html#00004">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Re: Java compatibility [compilers, etc.]</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: BeanShell developers &lt;<A HREF="mailto:developers@beanshell.org">developers@beanshell.org</A>&gt;</LI>
+<LI><em>Subject</em>: Re: Java compatibility [compilers, etc.]</LI>
+<LI><em>From</em>: Pat &lt;<A HREF="mailto:pat@pat.net">pat@pat.net</A>&gt;</LI>
+<LI><em>Date</em>: Tue, 14 Mar 2000 11:06:02 -0600</LI>
+<LI><em>Approved</em>: pat@pat.net</LI>
+<LI><em>In-Reply-To</em>: &lt;<A HREF="msg00005.html">38CD6D28.A40ECB0B@linart.pl</A>&gt;; from Max Gilead on Mon, Mar 13, 2000 at 11:35:20PM +0100</LI>
+<LI><em>Mail-Followup-To</em>: BeanShell developers &lt;developers@beanshell.org&gt;</LI>
+<LI><em>References</em>: &lt;<A HREF="msg00005.html">38CD6D28.A40ECB0B@linart.pl</A>&gt;</LI>
+<LI><em>Reply-To</em>: <A HREF="mailto:pat@pat.net">pat@pat.net</A></LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Mon, Mar 13, 2000 at 11:35:20PM +0100, Max Gilead wrote:
+&gt; 
+&gt; There were talk about making BeanShell bytecode-compatible with Java by
+&gt; writing bytecode compiler. While it is good solution, I thought that
+&gt; there is another one, maybe simpler and more flexible.
+&gt; 
+&gt; Do you know what NetRexx does when it compiles its source code? It first
+&gt; translates it to regular .java file and then invokes java compiler for
+&gt; it. BeanShell is much more similar to Java than NetRexx so writing such
+&gt; a translator would be even better solution.
+
+Well, any kind of compilation that we would consider would have to produce
+valid .class format output... so even if we use it internally in some
+cases we would have the capability to write classes out to disk if that were
+desired.  (Tangentially, saving serialized BeanShell objects does save the
+internal parsed format, not the script text).
+
+As far as using the JDK compiler the only reason I'd shy away from that is
+that we can't freely distribute it...  If we can find an alternative we might
+consider that.  But in actuality, if all we need to do is produce static
+Java types (e.g. non-interface types or extend a superclass) then the 
+byte-code production for that should be fairly simple (I'd imagine).  That is
+assuming we left the body of the code as interpreted.  On the other hand if
+you want to be able to compile out scripts to byte-code in their entirety 
+(for use without bsh) we'd need a fully featured compiler...  
+
+Another option that I've thought about in the past would be to have bsh be
+capable of reading a bsh script and spewing compilable Java code.  Of course
+bsh is mostly Java compatible, but some of the scripty features aren't 
+(loose types, the method/closure stuff).  It might be easy to modify the
+parser to have it simply spew the correct casts and type info upon parsing
+a script.  That would provide an easy path from prototyping to compilation.
+
+
+&gt; Pros and cons:
+&gt; + (important) allows people to write prototype code in BeanShell and
+&gt; then automatically convert it to Java (note that I think of translator
+&gt; which would produce well-looking Java code, or ugly code + some
+&gt; beautifier :-)
+
+Yes, this is what I was getting at in the last bit above.
+
+
+Thanks,
+Pat
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00007" HREF="msg00007.html">Re: Java compatibility [compilers, etc.]</A></STRONG>
+<UL><LI><EM>From:</EM> Max Gilead &lt;gilead@linart.pl&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00005" HREF="msg00005.html">Java compatibility idea</A></STRONG>
+<UL><LI><EM>From:</EM> Max Gilead &lt;gilead@linart.pl&gt;</LI></UL></LI>
+<LI><STRONG><A NAME="00005" HREF="msg00005.html">Java compatibility idea</A></STRONG>
+<UL><LI><EM>From:</EM> Max Gilead &lt;gilead@linart.pl&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00005.html">Java compatibility idea</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00025.html">Manual</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00005.html">Java compatibility idea</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00007.html">Re: Java compatibility [compilers, etc.]</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00004"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00004"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

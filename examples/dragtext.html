@@ -1,0 +1,50 @@
+<html>
+<head><title>BeanShell Example - Drag Text Example</title></head>
+<body bgcolor="#ffffff">
+
+<a href="../home.html"><img border=0 src="../images/homebutton.gif"><br>Home</a>
+<p>
+
+<h1>Drag Text Example</h1>
+
+<img src="dragtext.gif">
+<p>
+
+This example demonstrates a scripted event listener.  The scripted 
+mouseDragged() method is called in response to mouse events in the frame.
+<p>
+Note that the painted text is not preserved when the window is redrawn.
+To accomplish that you could use the helper class BshCanvas, which provides
+buffered drawing and also allows for callbacks to a scripted paint() method.
+See the <a href="graph.html">graph example</a>.
+<p>
+
+<p>
+<center>
+<table width=100% cellpadding=5>
+<tr><td bgcolor="#afefac">
+<font size=+1><a href="dragText.bsh">dragText.bsh</a> - Drag text with the mouse</font>
+</td></tr>
+<tr><td bgcolor="#cfefcc">
+<pre>
+dragText() {
+    f = new Frame("Drag in the box");
+    f.setFont( new Font("Serif", Font.BOLD, 24) );
+    f.setSize(300, 300);
+    f.show();
+    gc = f.getGraphics();
+    gc.setColor(Color.cyan);
+ 
+    mouseDragged( e ) {
+        gc.drawString("Drag Me!", e.getX(), e.getY());
+    }
+    mouseMoved( e ) { }
+
+    f.addMouseMotionListener( this );
+}
+</pre>
+</td></tr>
+</table>
+</center>
+<p>
+

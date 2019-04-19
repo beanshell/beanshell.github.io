@@ -1,0 +1,114 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Exceptions not being handled (or thrown correctly) -->
+<!--X-From: Ted Eiles <ted.eiles@learningmachines.com> -->
+<!--X-Date: Tue, 7 Dec 1999 15:00:41 &#45;0600 (CST) -->
+<!--X-Message-Id: 01BF40CD.4B8A9570.ted.eiles@learningmachines.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Exceptions not being handled (or thrown correctly)</TITLE>
+<LINK REV="made" HREF="mailto:ted.eiles@learningmachines.com">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00030.html">Date Prev</A>][<A HREF="msg00002.html">Date Next</A>][<A HREF="msg00010.html">Thread Prev</A>][<A HREF="msg00002.html">Thread Next</A>][<A HREF="maillist.html#00011">Date Index</A>][<A HREF="threads.html#00011">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Exceptions not being handled (or thrown correctly)</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: "<A HREF="mailto:users@beanshell.org">users@beanshell.org</A>" &lt;<A HREF="mailto:users@beanshell.org">users@beanshell.org</A>&gt;</LI>
+<LI><em>Subject</em>: Exceptions not being handled (or thrown correctly)</LI>
+<LI><em>From</em>: Ted Eiles &lt;<A HREF="mailto:ted.eiles@learningmachines.com">ted.eiles@learningmachines.com</A>&gt;</LI>
+<LI><em>Date</em>: Tue, 7 Dec 1999 16:08:13 -0500</LI>
+<LI><em>Organization</em>: Learning Machines, Inc</LI>
+<LI><em>Reply-To</em>: "<A HREF="mailto:ted.eiles@learningmachines.com">ted.eiles@learningmachines.com</A>" &lt;<A HREF="mailto:ted.eiles@learningmachines.com">ted.eiles@learningmachines.com</A>&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+I'm trying to catch an exception that I throw.  It appears that the exception is created but my/maybe not thrown.
+
+I looked through the documentation and couldn't find anything on exception handling. 
+
+--- Ted
+
+
+bsh.TargetError: TargetError : throw new javax .naming .NamingException ( appName + " not found" ) ; 
+Target exception: javax.naming.NamingException: biz not found
+	at bsh.BSHThrowStatement.eval(BSHThrowStatement.java:31)
+	at bsh.BSHBlock.eval(BSHBlock.java:29)
+	at bsh.BSHIfStatement.eval(BSHIfStatement.java:28)
+	at bsh.BSHBlock.eval(BSHBlock.java:29)
+	at bsh.BshMethod.invokeDeclaredMethod(BshMethod.java:89)
+	at bsh.Reflect.invokeLocalMethod(Reflect.java:507)
+	at bsh.Reflect.invokeMethod(Reflect.java:68)
+	at bsh.BSHMethodInvocation.eval(BSHMethodInvocation.java:29)
+	at bsh.BSHPrimarySuffix.doSuffix(BSHPrimarySuffix.java:69)
+	at bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:35)
+	at bsh.BSHBlock.eval(BSHBlock.java:29)
+	at bsh.BSHTryStatement.eval(BSHTryStatement.java:56)
+	at bsh.BSHBlock.eval(BSHBlock.java:29)
+	at bsh.BshMethod.invokeDeclaredMethod(BshMethod.java:89)
+	at bsh.Reflect.invokeLocalMethod(Reflect.java:507)
+	at bsh.Reflect.invokeMethod(Reflect.java:68)
+	at bsh.BSHMethodInvocation.eval(BSHMethodInvocation.java:29)
+	at bsh.BSHPrimaryExpression.eval(BSHPrimaryExpression.java:48)
+	at bsh.Interpreter.run(Interpreter.java:310)
+	at bsh.Interpreter.main(Interpreter.java:266)
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00002" HREF="msg00002.html">Re: Exceptions not being handled (or thrown correctly)</A></STRONG>
+<UL><LI><EM>From:</EM> Pat &lt;pat@pat.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00030.html">Re: BeanShell : Separating parsing from evaluation</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00002.html">Re: Exceptions not being handled (or thrown correctly)</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00010.html">Re: BeanShell suggestions</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00002.html">Re: Exceptions not being handled (or thrown correctly)</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00011"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00011"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

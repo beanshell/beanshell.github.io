@@ -1,0 +1,110 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Re: Exceptions not being handled (or thrown correctly) -->
+<!--X-From: Pat <pat@pat.net> -->
+<!--X-Date: Wed, 8 Dec 1999 23:34:15 &#45;0600 -->
+<!--X-Message-Id: 19991208233415.54699@pat.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 01BF40CD.4B8A9570.ted.eiles@learningmachines.com -->
+<!--X-Reference: 01BF40CD.4B8A9570.ted.eiles@learningmachines.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Exceptions not being handled (or thrown correctly)</TITLE>
+<LINK REV="made" HREF="mailto:pat@pat.net">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+[<A HREF="msg00011.html">Date Prev</A>][<A HREF="msg00014.html">Date Next</A>][<A HREF="msg00011.html">Thread Prev</A>][<A HREF="msg00014.html">Thread Next</A>][<A HREF="maillist.html#00002">Date Index</A>][<A HREF="threads.html#00002">Thread Index</A>]
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<H1>Re: Exceptions not being handled (or thrown correctly)</H1>
+<HR>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: "<A HREF="mailto:ted.eiles@learningmachines.com">ted.eiles@learningmachines.com</A>" &lt;<A HREF="mailto:ted.eiles@learningmachines.com">ted.eiles@learningmachines.com</A>&gt;,"<A HREF="mailto:users@beanshell.org">users@beanshell.org</A>" &lt;<A HREF="mailto:users@beanshell.org">users@beanshell.org</A>&gt;</LI>
+<LI><em>Subject</em>: Re: Exceptions not being handled (or thrown correctly)</LI>
+<LI><em>From</em>: Pat &lt;<A HREF="mailto:pat@pat.net">pat@pat.net</A>&gt;</LI>
+<LI><em>Date</em>: Wed, 8 Dec 1999 23:34:15 -0600</LI>
+<LI><em>Approved</em>: pat@pat.net</LI>
+<LI><em>In-Reply-To</em>: &lt;<A HREF="msg00011.html">01BF40CD.4B8A9570.ted.eiles@learningmachines.com</A>&gt;; from Ted Eiles on Tue, Dec 07, 1999 at 04:08:13PM -0500</LI>
+<LI><em>Mail-Followup-To</em>: "ted.eiles@learningmachines.com" &lt;ted.eiles@learningmachines.com&gt;,"users@beanshell.org" &lt;users@beanshell.org&gt;</LI>
+<LI><em>References</em>: &lt;<A HREF="msg00011.html">01BF40CD.4B8A9570.ted.eiles@learningmachines.com</A>&gt;</LI>
+<LI><em>Reply-To</em>: <A HREF="mailto:pat@pat.net">pat@pat.net</A></LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Tue, Dec 07, 1999 at 04:08:13PM -0500, Ted Eiles wrote:
+&gt; 
+&gt; I'm trying to catch an exception that I throw.  It appears that the exception is created but my/maybe not thrown.
+&gt; 
+&gt; I looked through the documentation and couldn't find anything on exception handling. 
+&gt; 
+&gt; bsh.TargetError: TargetError : throw new javax .naming .NamingException ( appName + " not found" ) ; 
+&gt; Target exception: javax.naming.NamingException: biz not found
+&gt; 	at bsh.BSHThrowStatement.eval(BSHThrowStatement.java:31)
+&gt; 	at bsh.BSHBlock.eval(BSHBlock.java:29)
+&gt; 	at bsh.BSHIfStatement.eval(BSHIfStatement.java:28)
+
+Hmm.  It looks like your exception was thrown but it wasn't caught...
+It's appearing as a TargetError (the internal wrapper for an exception).
+
+Can you send the snippet including the try/catch?
+Does this happen if you try a simple example as well?
+
+
+Pat
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00011" HREF="msg00011.html">Exceptions not being handled (or thrown correctly)</A></STRONG>
+<UL><LI><EM>From:</EM> Ted Eiles &lt;ted.eiles@learningmachines.com&gt;</LI></UL></LI>
+<LI><STRONG><A NAME="00011" HREF="msg00011.html">Exceptions not being handled (or thrown correctly)</A></STRONG>
+<UL><LI><EM>From:</EM> Ted Eiles &lt;ted.eiles@learningmachines.com&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<UL>
+<LI>Prev by Date:
+<STRONG><A HREF="msg00011.html">Exceptions not being handled (or thrown correctly)</A></STRONG>
+</LI>
+<LI>Next by Date:
+<STRONG><A HREF="msg00014.html">RE: JDK tools</A></STRONG>
+</LI>
+<LI>Prev by thread:
+<STRONG><A HREF="msg00011.html">Exceptions not being handled (or thrown correctly)</A></STRONG>
+</LI>
+<LI>Next by thread:
+<STRONG><A HREF="msg00014.html">RE: JDK tools</A></STRONG>
+</LI>
+<LI>Index(es):
+<UL>
+<LI><A HREF="maillist.html#00002"><STRONG>Date</STRONG></A></LI>
+<LI><A HREF="threads.html#00002"><STRONG>Thread</STRONG></A></LI>
+</UL>
+</LI>
+</UL>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>
