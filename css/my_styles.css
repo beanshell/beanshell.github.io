@@ -40,7 +40,7 @@ aside nav {
 }
 aside ul {
 	list-style-type: none;
-	column-width: 98%;
+	width: 98%;
 }
 aside li {
 	width: 95%;
