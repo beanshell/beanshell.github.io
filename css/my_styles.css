@@ -29,7 +29,7 @@ body, html {
 span.small {
 	font-size: x-small;
 }
-span.large {
+div.large {
 	font-size: x-large;
 }
 aside nav {
