@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+
+<head>
+    <title>Scripting Classes</title>
+</head>
+
+<body bgcolor="ffffff">
+    <table cellspacing="10">
+        <tr>
+            <td align="center"><a href="http://www.beanshell.org/"><img src="images/homebutton.png" /><br />Home</a>
+            </td>
+            <td><a href="interfaces.html#Scripting_Interfaces"><img src="images/backbutton.png" /><br />Back
+                </a></td>
+            <td align="center"><a href="contents.html"><img src="images/upbutton.png" /><br />Contents</a></td>
+            <td align="center"><a href="specialvarsvalues.html#Special_Variables_and_Values"><img
+                        src="images/forwardbutton.png" /><br />Next
+                </a></td>
+        </tr>
+    </table>
+    <h1>Scripting Classes</h1>
+
+
+    Since BeanShell 2.0, in addition to the 'this' reference style of scripting
+    objects and interfaces described in the previous section, you can also
+    declare real Java classes and interfaces in your scripts using the
+    ordinary Java <code>class</code> and <code>interface</code> keywords.
+    A scripted class may extend another class (scripted or compiled) and
+    implement any number of interfaces, just as it would in compiled Java.
+    Instances of scripted classes are real instances of that class - they
+    pass <code>instanceof</code> checks for the class and all of its
+    superclasses and interfaces - which was not the case in earlier versions
+    of BeanShell.
+    <p CLEAR="ALL" />
+
+    <h2><a name="Declaring_a_Scripted_Class">Declaring a Scripted Class</a></h2>
+
+    Constructors, instance and static fields, and instance and static methods
+    all work as you would expect from Java. Method and constructor bodies are,
+    of course, still loosely typed BeanShell code.
+
+    <p />
+    <center>
+        <table border="1" cellpadding="5" width="100%">
+            <tr>
+                <td bgcolor="#dfdfdc">
+                    <pre>
+class Foo
+{
+    static int a = 5;
+    int b;
+
+    Foo() { }             // Foo needs a default constructor for Bar()
+    Foo( int c ) { b = c; }
+
+    void method() {
+        print( "a is " + a );
+    }
+
+    static void smethod() {
+        print( "static method, a is " + a );
+    }
+}
+
+class Bar extends Foo
+{
+    method() {             // override, loosely typed
+        print( "Bar.method() overrides Foo.method()" );
+        super.method();     // call the overridden method
+    }
+}
+
+Bar bar = new Bar();
+print( bar instanceof Bar );  // true
+print( bar instanceof Foo );  // true
+bar.method();
+Bar.smethod();                 // static members are inherited
+</pre>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    As in Java, a subclass whose superclass does not have a no-argument
+    constructor must define a constructor that calls one of the superclass's
+    constructors explicitly.
+    <p CLEAR="ALL" />
+
+    <h2><a name="Implementing_Interfaces">Implementing Interfaces</a></h2>
+
+    You may also declare interfaces directly in a script, and implement them
+    with the standard <code>implements</code> clause:
+
+    <p />
+    <center>
+        <table border="1" cellpadding="5" width="100%">
+            <tr>
+                <td bgcolor="#dfdfdc">
+                    <pre>
+interface Named
+{
+    String getName();
+}
+
+class Person implements Named
+{
+    String name;
+    Person( String name ) { this.name = name; }
+    String getName() { return name; }
+}
+
+Named n = new Person( "Pat" );
+print( n.getName() );
+</pre>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    This works equally well with ordinary Java interfaces, including AWT and
+    Swing listener types, giving you an alternative to the anonymous
+    'this' reference style described in "Scripting Interfaces" whenever you
+    want a real, named, reusable class instead of an ad-hoc object.
+    <p CLEAR="ALL" />
+
+    <p />
+    <center>
+        <table cellpadding="5" border="1" width="90%">
+            <tr>
+                <td bgcolor="#eeeebb"><strong>Note:</strong><br CLEAR="ALL" />
+                    The 'this' reference style of scripting objects and
+                    interfaces, described in the previous section, is still
+                    fully supported and remains the simplest way to script a
+                    one-off handler or adapter. Reach for a scripted
+                    <code>class</code> when you want inheritance, real
+                    <code>instanceof</code> behavior, or a type you intend to
+                    construct more than once.
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    <h2><a name="Static_Blocks">Static Blocks</a></h2>
+
+    Static initializer blocks in the class body are supported:
+
+    <p />
+    <center>
+        <table border="1" cellpadding="5" width="100%">
+            <tr>
+                <td bgcolor="#dfdfdc">
+                    <pre>
+class Foo
+{
+    static int a;
+    static {
+        a = 42;
+    }
+}
+</pre>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    <h2><a name="Persistent_Scriptable_Classes">Persistent Scriptable Classes (Experimental)</a></h2>
+
+    Ordinarily a scripted class is generated dynamically, in memory, the
+    first time it is referenced. Using the system property
+    <code>-DsaveClasses=&lt;savedir&gt;</code> you can instead instruct
+    BeanShell to write out a persistent <code>.class</code> file for each
+    class definition it finds in a script. In this mode BeanShell does not
+    execute the script; it only generates and stores the class files.
+    <p CLEAR="ALL" />
+
+    A class "Foo.class" generated this way expects to find its associated
+    scripted class definition in a file "Foo.bsh" in the same location as the
+    class file, so each stored class must have a corresponding script. For
+    example, given:
+
+    <p />
+    <center>
+        <table border="1" cellpadding="5" width="100%">
+            <tr>
+                <td bgcolor="#dfdfdc">
+                    <pre>
+// File: Foo.bsh
+class Foo {
+    Foo() { print("I'm being constructed!"); }
+}
+</pre>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    you can generate Foo.class in the current directory with:
+
+    <p />
+    <center>
+        <table border="1" cellpadding="5" width="100%">
+            <tr>
+                <td bgcolor="#dfdfdc">
+                    <pre>
+java -DsaveClasses=. bsh.Interpreter Foo.bsh
+</pre>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    The resulting Foo class may then be used like any ordinary Java class and
+    invoked from ordinary Java code, e.g. <code>new Foo()</code>. When it is
+    loaded it automatically starts a BeanShell interpreter to run its
+    corresponding Foo.bsh script, so the script is still free to contain
+    additional loose code beyond the class definition itself; that code runs
+    when the class is initialized.
+    <p CLEAR="ALL" />
+
+    <p />
+    <center>
+        <table cellpadding="5" border="1" width="90%">
+            <tr>
+                <td bgcolor="#eeeebb"><strong>Note:</strong><br CLEAR="ALL" />
+                    This feature is experimental. Each saved class currently
+                    initializes its own interpreter instance when loaded.
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    <h2><a name="Current_Limitations">Current Limitations</a></h2>
+
+    A few corners of scripted classes are still incomplete:
+    <p CLEAR="ALL" />
+
+    <ul>
+        <li>In order to run a class file's main method with arguments from
+            the command line, the class containing your main method must be
+            the last item in the file.</li>
+        <li>Non-static inner classes are implemented using a non-standard
+            mechanism (mix-ins), so mixing interpreted classes with their
+            pre-compiled inner classes does not work properly in all cases.
+        </li>
+        <li>Inner classes are not properly "imported" in some cases: e.g.
+            class A contains one or more inner classes, class B extends A,
+            and B attempts to refer to those inner classes by their
+            unqualified names.</li>
+    </ul>
+
+    <table cellspacing="10">
+        <tr>
+            <td align="center"><a href="http://www.beanshell.org/"><img src="images/homebutton.png" /><br />Home</a>
+            </td>
+            <td><a href="interfaces.html#Scripting_Interfaces"><img src="images/backbutton.png" /><br />Back
+                </a></td>
+            <td align="center"><a href="contents.html"><img src="images/upbutton.png" /><br />Contents</a></td>
+            <td align="center"><a href="specialvarsvalues.html#Special_Variables_and_Values"><img
+                        src="images/forwardbutton.png" /><br />Next
+                </a></td>
+        </tr>
+    </table>
+</body>
+
+</html>

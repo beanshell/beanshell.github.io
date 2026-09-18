@@ -611,6 +611,67 @@ importCommands("/bsh/commands");
     </center>
     <p />
 
+    <h3>Static Imports</h3>
+
+    As of BeanShell 2.0 you can import the static methods and fields of a
+    Java class into a BeanShell namespace, using the same syntax as Java 5:
+
+    <p />
+    <center>
+        <table border="1" cellpadding="5" width="100%">
+            <tr>
+                <td bgcolor="#dfdfdc">
+                    <pre>
+import static java.lang.Math.*;
+print( sqrt(4.0) ); // 2.0
+</pre>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    You can also import the static members of an individual class name
+    directly, without the wildcard:
+
+    <p />
+    <center>
+        <table border="1" cellpadding="5" width="100%">
+            <tr>
+                <td bgcolor="#dfdfdc">
+                    <pre>
+import static java.lang.Math.sqrt;
+print( sqrt(4.0) ); // 2.0
+</pre>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    You can also import the methods and fields of a Java object
+    <em>instance</em> into a BeanShell namespace, using the importObject()
+    command. This works like a static import, but pulls in the instance
+    methods and fields of a particular object rather than the static members
+    of a class:
+
+    <p />
+    <center>
+        <table border="1" cellpadding="5" width="100%">
+            <tr>
+                <td bgcolor="#dfdfdc">
+                    <pre>
+Map map = new HashMap();
+importObject( map );
+put("foo", "bar");
+print( get("foo") ); // "bar"
+</pre>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
     <h2><a name="Document_Friendly_Entities">Document Friendly Entities</a></h2>
 
     BeanShell supports special overloaded text forms of all common operators

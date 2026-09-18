@@ -505,6 +505,63 @@ Runnable runnable =
 
     See also "The BeanShell Parser" for more about performance issues.
 
+    <h2><a name="javax.script_(JSR223)">Scripting via javax.script (JSR223)</a></h2>
+
+    As of BeanShell 2.0 you can also invoke BeanShell through the standard
+    Java scripting API (JSR223, the <code>javax.script</code> package),
+    instead of using the bsh.Interpreter class directly. BeanShell registers
+    itself as a script engine under the names "beanshell", "bsh" and "java",
+    and for the file extensions ".bsh" and ".java", so the standard
+    ScriptEngineManager will find it automatically as long as the BeanShell
+    JAR is on your classpath:
+
+    <p />
+    <center>
+        <table border="1" cellpadding="5" width="100%">
+            <tr>
+                <td bgcolor="#dfdfdc">
+                    <pre>
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+
+ScriptEngineManager manager = new ScriptEngineManager();
+ScriptEngine engine = manager.getEngineByName("beanshell");
+
+engine.put("foo", 5);
+engine.eval("bar = foo * 10;");
+System.out.println( engine.get("bar") );
+</pre>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    BeanShell keeps all of its variable, type and other interpreter state
+    for a given ScriptContext in a BeanShell NameSpace embedded in the
+    context, so the engine is fully pluggable with respect to the spec while
+    still preserving full interpreter state between eval() calls.
+    <p CLEAR="ALL" />
+
+    <p />
+    <center>
+        <table cellpadding="5" border="1" width="90%">
+            <tr>
+                <td bgcolor="#eeeebb"><strong>Note:</strong><br CLEAR="ALL" />
+                    If you would rather work directly against the interpreter
+                    (for example to use eval()'s return value or the
+                    get()/set() shortcuts described above) use the
+                    bsh.Interpreter class directly as described earlier in
+                    this section. The JSR223 engine is mainly useful when your
+                    application is already written against the generic
+                    javax.script API and you want to be able to swap
+                    scripting languages.
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
     <h2><a name="Serializing_Interpreters_and_Scripted_Objects">Serializing Interpreters and Scripted Objects</a></h2>
 
     The BeanShell Interpreter is serializable, assuming of course that all

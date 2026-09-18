@@ -140,6 +140,11 @@
 				<br clear="ALL" /></td>
 		</tr>
 		<tr>
+			<td width="20%"><strong><a href="#importObject">importObject</a></strong></td>
+			<td>void importObject( Object object )
+				<br clear="ALL" /></td>
+		</tr>
+		<tr>
 			<td width="20%"><strong><a href="#javap">javap</a></strong></td>
 			<td>void javap( String | Object | Class | ClassIdentifier )
 				<br clear="ALL" /></td>
@@ -850,6 +855,30 @@
 
 				Imported commands are scoped just like imported clases.
 				<p />
+			</td>
+		</tr>
+	</table>
+	<table width="100%" border="0" cellpadding="5">
+		<tr>
+			<td bgcolor="#cccccc"><a name="importObject"><strong>
+						<font size="+2">importObject</font>
+					</strong></a><br clear="ALL" />
+				<font size="+1">void importObject( Object object )
+					<br clear="ALL" /></font>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Import an instance object into this namespace
+				(analogous to static class imports).
+				You can import the methods and fields of a Java object instance into
+				a BeanShell namespace. e.g.
+				<pre>
+	Map map = new HashMap();
+	importObject( map );
+	put("foo", "bar");
+	print( get("foo") ); // "bar"
+</pre>
 			</td>
 		</tr>
 	</table>

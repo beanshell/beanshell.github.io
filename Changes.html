@@ -7,6 +7,95 @@
 
 <body bgcolor=#ffffff>
 
+    <h2>Changes in 2.1.1</h2>
+    <pre>
+	Fix src/bsh/util/AWTConsole.java breakage with newer Java versions
+    </pre>
+
+    <h2>Changes in 2.1.0</h2>
+    <pre>
+	This release formalizes the merge of 2.0b6 with suitable backports from
+	the development (HEAD) version of BeanShell (3). Also included are
+	some ALv2 contributions to the BeanShell2 fork that had not been
+	folded into BeanShell but are still applicable to this version. For
+	backwards compatibility purposes, the 2.x branch of BeanShell still
+	supports a minimum Java version of 1.6.
+    </pre>
+
+    <h2>Changes in 2.0 beta 6</h2>
+    <h3>Security fix</h3>
+    <pre>
+	This release fixes a remote code execution vulnerability that was
+	identified in BeanShell by Alvaro Mu&ntilde;oz and Christian Schneider.
+	The BeanShell team would like to thank them for their help and
+	contributions to this fix!
+
+	An application that includes BeanShell on the classpath may be
+	vulnerable if another part of the application uses
+	<a href="https://docs.oracle.com/javase/tutorial/jndi/objects/serial.html">Java
+	serialization</a> or <a href="http://x-stream.github.io/">XStream</a>
+	to deserialize data from an untrusted source.
+
+	A vulnerable application could be exploited for remote code execution,
+	including executing arbitrary shell commands.
+
+	This update fixes the vulnerability in BeanShell, but it is worth
+	noting that applications doing such deserialization might still be
+	insecure through other libraries. It is recommended that application
+	developers take further measures such as using a restricted class
+	loader when deserializing. See notes on
+	<a href="http://www.oracle.com/technetwork/java/seccodeguide-139067.html#8">Java
+	serialization security</a>,
+	<a href="http://x-stream.github.io/security.html">XStream security</a> and
+	<a href="http://www.ibm.com/developerworks/library/se-lookahead/">How to
+	secure deserialization from untrusted input without using encryption or
+	sealing</a>.
+
+	A <a href="http://cve.mitre.org/cve/">CVE number</a> will be requested.
+    </pre>
+
+    <h2>Changes in 2.0 beta 5</h2>
+    <h3>Persistent Scriptable Classes! (Experimental Feature)</h3>
+    <pre>
+	Using the system property -DsaveClasses=&lt;savedir&gt; you can instruct
+	BeanShell to write out persistent class files for class definitions found
+	in the script.  In this mode BeanShell will not execute code, but will
+	generate and store a class files for each class definition it finds.
+	These classes are the same as the ordinary runtime generated delegate
+	classes used internally by BeanShell but additionally have static
+	initializer code that allows them to bootstrap an instance of the
+	BeanShell interpreter to execute their scripted body if the class is
+	used from an external application.
+
+	Currently we are using a simple convention whereby a class "Foo.class"
+	expects to find its associated scripted class definition in a file
+	"Foo.bsh" in the same location as the class file.  Each stored class
+	must have a corresponding script definition.  See the "Scripting
+	Classes" section of the user manual for an example.
+    </pre>
+    <h3>Added JSR223 javax.script adapter engine implementation in a new bsh.engine package</h3>
+    <pre>
+	This implementation of the spec supports pluggable ScriptContext.
+	BeanShell maintains all of its info on variables (type, modifiers,
+	etc.) and all of its internal state for a given ScriptContext via a
+	BeanShell NameSpace embedded in the context.  This allows us to be
+	completely pluggable with respect to the spec, but still keep the full
+	interpreter state between evaluations. See the "Embedding BeanShell"
+	section of the user manual for an example.
+
+	- Added a new class, ExternalNameSpace to the distribution. This is a
+	BeanShell namespace that knows how to externalize its variables to a
+	standard Map.
+
+	- Fixed static import syntax.  It's now the same as Java 5:
+
+		import static Foo.*;
+
+	(previously was "static import ...")
+
+	- Static blocks in scripted classes are now working.
+    </pre>
+
     <h2>Changes in 2.0 beta 4</h2>
     <pre>
 	- Source compiles under JDK 1.5
