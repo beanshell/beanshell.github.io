@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+
+<head>
+    <title>Lambda Expressions</title>
+</head>
+
+<body bgcolor="ffffff">
+    <table cellspacing="10">
+        <tr>
+            <td align="center"><a href="http://www.beanshell.org/"><img src="images/homebutton.png" /><br />Home</a>
+            </td>
+            <td><a href="classes.html#Scripting_Classes"><img src="images/backbutton.png" /><br />Back
+                </a></td>
+            <td align="center"><a href="contents.html"><img src="images/upbutton.png" /><br />Contents</a></td>
+            <td align="center"><a href="specialvarsvalues.html#Special_Variables_and_Values"><img
+                        src="images/forwardbutton.png" /><br />Next
+                </a></td>
+        </tr>
+    </table>
+    <h1>Lambda Expressions</h1>
+
+
+    Since BeanShell 3.0 you can write lambda expressions - <code>x -&gt; ...</code>,
+    <code>(a, b) -&gt; ...</code>, <code>(Type a) -&gt; ...</code> - and use them
+    as a functional-interface value in Java code, usually without an explicit
+    cast. Method references (<code>Foo::bar</code>) are not supported.
+    <p CLEAR="ALL" />
+
+    <h2><a name="Basic_Forms">Basic Forms</a></h2>
+
+    A lambda body may be a single expression or a block, and its parameter
+    list may be empty, a single untyped identifier, or a parenthesized list
+    of untyped or typed parameters:
+
+    <p />
+    <center>
+        <table border="1" cellpadding="5" width="100%">
+            <tr>
+                <td bgcolor="#dfdfdc">
+                    <pre>
+Function expr  = x -> x + 1;
+Function block = x -> { return x + 1; };
+
+Supplier zeroArg   = () -> 5;
+Function oneArg    = x -> x * 2;
+BiFunction twoArgs = (a, b) -> a + b;
+Function typedArg  = (Integer x) -> x + 10;
+
+expr.apply(1);   // 2
+twoArgs.apply(2, 3); // 5
+</pre>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    As in the examples above, a lambda can usually be assigned directly to a
+    variable typed with the target functional interface, with no cast
+    needed. This works with ordinary JDK functional interfaces too, so you
+    can pass a lambda straight into APIs like <code>Collection.forEach()</code>,
+    <code>Collections.sort()</code>, or a <code>Stream</code> pipeline:
+
+    <p />
+    <center>
+        <table border="1" cellpadding="5" width="100%">
+            <tr>
+                <td bgcolor="#dfdfdc">
+                    <pre>
+sum = 0;
+Arrays.asList(1, 2, 3).forEach( x -> { sum += x; } );
+
+sorted = new ArrayList(Arrays.asList(3, 1, 2));
+Collections.sort( sorted, (a, b) -> a - b );
+
+mapped = Arrays.asList(1, 2, 3).stream()
+    .map( x -> x * 2 )
+    .collect( Collectors.toList() );
+</pre>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    A lambda's value is opaque - it doesn't commit to a particular
+    interface type - until it is converted to one, by cast, assignment, or
+    overload resolution. Until then it can sit in an untyped or
+    <code>Object</code> variable just like any other BeanShell value.
+    <p CLEAR="ALL" />
+
+    <h2><a name="Capturing_Variables">Capturing Variables</a></h2>
+
+    A lambda captures its declaring scope <em>by reference</em>, not by
+    snapshotting each variable's value the way Java requires captured
+    locals to be effectively final. This means a later change to a captured
+    variable - a global, a method local, or a scripted object's field - is
+    visible the next time the lambda runs:
+
+    <p />
+    <center>
+        <table border="1" cellpadding="5" width="100%">
+            <tr>
+                <td bgcolor="#dfdfdc">
+                    <pre>
+counter = 1;
+Supplier getCounter = () -> counter;
+counter = 2;
+getCounter.get(); // 2
+</pre>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    <p />
+    <center>
+        <table cellpadding="5" border="1" width="90%">
+            <tr>
+                <td bgcolor="#eeeebb"><strong>Note:</strong><br CLEAR="ALL" />
+                    Because BeanShell does not refresh a for-each loop variable
+                    per iteration the way Java does, a lambda created inside a
+                    loop captures the <em>same</em> variable across iterations,
+                    not a fresh one each time:
+                    <pre>
+for ( String s : list )
+    list2.add( () -> s );  // every lambda here returns list's LAST element
+</pre>
+                    If you need each lambda to see a different value, assign
+                    it to a fresh local inside the loop body first.
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    <h2><a name="Exceptions"> Exceptions</a></h2>
+
+    An unchecked exception, or a checked exception the target interface's
+    method actually declares, propagates out of a lambda call as itself.
+    Any other checked exception - or a BeanShell script error inside the
+    lambda body - comes out wrapped as <code>bsh.RuntimeEvalError</code>
+    instead.
+    <p CLEAR="ALL" />
+
+    <h2><a name="Limitations">Limitations</a></h2>
+
+    A handful of target interface shapes are rejected when a lambda is
+    converted to them, rather than allowed to fail confusingly later:
+    <p CLEAR="ALL" />
+
+    <ul>
+        <li>Sealed interfaces (JLS 9.8).</li>
+        <li>An interface whose single abstract method declares a return or
+            parameter type that isn't accessible to the generated wrapper
+            class (for example, public only inside a JPMS module not
+            exported to unnamed modules).</li>
+        <li>A scripted interface that declares or inherits a scripted
+            <em>default</em> method - a scripted default can't yet call
+            back into the lambda's own method. An inherited compiled Java
+            default (such as <code>Predicate.negate()</code>) is
+            unaffected.</li>
+        <li>A raw generic target such as a bare <code>Supplier</code>
+            can't be fully type-checked at conversion time, so a Java
+            caller expecting <code>Supplier&lt;String&gt;</code> may still
+            see a <code>ClassCastException</code> at the point of use.</li>
+    </ul>
+
+    A lambda converted to a <code>Serializable</code> interface serializes
+    normally, but deserializing it throws rather than running - the same
+    rule that already applies to serialized 'this' references - because
+    deserialization has to freshly initialize the named interface.
+    <p CLEAR="ALL" />
+
+    <table cellspacing="10">
+        <tr>
+            <td align="center"><a href="http://www.beanshell.org/"><img src="images/homebutton.png" /><br />Home</a>
+            </td>
+            <td><a href="classes.html#Scripting_Classes"><img src="images/backbutton.png" /><br />Back
+                </a></td>
+            <td align="center"><a href="contents.html"><img src="images/upbutton.png" /><br />Contents</a></td>
+            <td align="center"><a href="specialvarsvalues.html#Special_Variables_and_Values"><img
+                        src="images/forwardbutton.png" /><br />Next
+                </a></td>
+        </tr>
+    </table>
+</body>
+
+</html>

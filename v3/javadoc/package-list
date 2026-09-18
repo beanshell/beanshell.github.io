@@ -1,0 +1,8 @@
+bsh
+bsh.classpath
+bsh.commands
+bsh.engine
+bsh.org.objectweb.asm
+bsh.org.objectweb.asm.signature
+bsh.security
+bsh.util
