@@ -402,9 +402,15 @@
 			Download and Run BeanShell
 		</a></h2>
 
-	Download the latest JAR file from http://www.beanshell.org
+	Download the latest JAR file from the
+	<a href="https://beanshell.github.io/download.html">download page</a>
 	and start up BeanShell either in the graphical desktop mode or on
 	the command line.
+	<p CLEAR="ALL" />
+
+	If your project is built with Maven or Gradle you can skip the download
+	and pull BeanShell from Maven Central instead, as
+	<code>io.github.beanshell:bsh:2.1.1</code>.
 	<p CLEAR="ALL" />
 
 	If you just want to start playing around you may be able to launch the
@@ -4831,6 +4837,32 @@ java bsh.Remote bsh://localhost:1234/ test1.bsh
 	More and more people are using BeanShell for embedded applications in small
 	devices. We have reports of BeanShell running everywhere from palm-tops
 	to autonomous buoys in the Pacific ocean!
+	<p CLEAR="ALL" />
+
+	BeanShell is published to Maven Central under the
+	<code>io.github.beanshell</code> groupId, so if your application is built
+	with Maven you can add the interpreter as an ordinary dependency:
+
+	<p />
+	<center>
+		<table border="1" cellpadding="5" width="100%">
+			<tr>
+				<td bgcolor="#dfdfdc">
+					<pre>
+&lt;dependency&gt;
+  &lt;groupId&gt;io.github.beanshell&lt;/groupId&gt;
+  &lt;artifactId&gt;bsh&lt;/artifactId&gt;
+  &lt;version&gt;2.1.1&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+				</td>
+			</tr>
+		</table>
+	</center>
+	<p />
+
+	With Gradle, use <code>implementation 'io.github.beanshell:bsh:2.1.1'</code>.
+	Otherwise just put the BeanShell JAR in your application's classpath.
 
 
 	<h2><a name="Calling_BeanShell_From_Java">Calling BeanShell From Java</a></h2>

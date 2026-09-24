@@ -57,6 +57,50 @@
         </section>
 
         <section>
+            <h2>Maven Central</h2>
+            <p>
+                BeanShell is published to
+                <a href="https://central.sonatype.com/artifact/io.github.beanshell/bsh">Maven Central</a>
+                under the <code>io.github.beanshell</code> groupId. BeanShell 2.1.1 is available
+                there now. To use it from a Maven build, add this to your <code>pom.xml</code>:
+            </p>
+            <pre>
+    &lt;dependency&gt;
+      &lt;groupId&gt;io.github.beanshell&lt;/groupId&gt;
+      &lt;artifactId&gt;bsh&lt;/artifactId&gt;
+      &lt;version&gt;2.1.1&lt;/version&gt;
+    &lt;/dependency&gt;
+            </pre>
+            <p>
+                Or with Gradle:
+            </p>
+            <pre>
+    implementation 'io.github.beanshell:bsh:2.1.1'
+            </pre>
+            <p>
+                You can also fetch the JAR directly from Central:
+                <a href="https://repo1.maven.org/maven2/io/github/beanshell/bsh/2.1.1/bsh-2.1.1.jar">bsh-2.1.1.jar</a>.
+            </p>
+            <p>
+                The old 2.0b5 and 2.0b6 betas are on Central under the
+                <code>org.apache-extras.beanshell</code> groupId. Use
+                <code>io.github.beanshell</code> for 2.1.1 and later.
+            </p>
+        </section>
+
+        <section>
+            <h2>BeanShell 3.0 Beta</h2>
+            <p>
+                BeanShell 3.0 is not on Maven Central yet. The 3.0.0b1 beta is available from
+                <a href="https://github.com/beanshell/beanshell/releases/tag/3.0.0b1">GitHub releases</a>:
+                <a href="https://github.com/beanshell/beanshell/releases/download/3.0.0b1/bsh-3.0.0b1.jar">bsh-3.0.0b1.jar</a>.
+                To use it from Maven, check out the <code>3.0.0b1</code> tag and run
+                <code>mvn install</code>; 3.0.0b1 predates the groupId change, so depend on
+                <code>org.beanshell:bsh:3.0.0b1</code>.
+            </p>
+        </section>
+
+        <section>
             <p>
                 Please see the user manual or
                 <a href="v2/manual/bshmanual2.html">quick start</a> guide for information on

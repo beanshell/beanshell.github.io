@@ -114,6 +114,32 @@
     More and more people are using BeanShell for embedded applications in small
     devices. We have reports of BeanShell running everywhere from palm-tops
     to autonomous buoys in the Pacific ocean!
+    <p CLEAR="ALL" />
+
+    BeanShell is published to Maven Central under the
+    <code>io.github.beanshell</code> groupId, so if your application is built
+    with Maven you can add the interpreter as an ordinary dependency:
+
+    <p />
+    <center>
+        <table border="1" cellpadding="5" width="100%">
+            <tr>
+                <td bgcolor="#dfdfdc">
+                    <pre>
+&lt;dependency&gt;
+  &lt;groupId&gt;io.github.beanshell&lt;/groupId&gt;
+  &lt;artifactId&gt;bsh&lt;/artifactId&gt;
+  &lt;version&gt;2.1.1&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <p />
+
+    With Gradle, use <code>implementation 'io.github.beanshell:bsh:2.1.1'</code>.
+    Otherwise just put the BeanShell JAR in your application's classpath.
 
 
     <h2><a name="Calling_BeanShell_From_Java">Calling BeanShell From Java</a></h2>
