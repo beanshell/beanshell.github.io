@@ -402,9 +402,9 @@
 	Download the latest JAR file from the
 	<a href="https://beanshell.github.io/download.html">download page</a>
 	and start up BeanShell either in the graphical desktop mode or on
-	the command line. The BeanShell 3.0 betas are distributed through
-	<a href="https://github.com/beanshell/beanshell/releases">GitHub releases</a>;
-	they are not on Maven Central yet.
+	the command line. BeanShell 3.0 releases are distributed through
+	<a href="https://github.com/beanshell/beanshell/releases">GitHub releases</a>
+	and Maven Central, as <code>io.github.beanshell:bsh</code>.
 	<p CLEAR="ALL" />
 
 	If you just want to start playing around you may be able to launch the
@@ -5017,14 +5017,9 @@ c = BshClassManager.classForName( name );  // equivalent
 		<table cellpadding="5" border="1" width="90%">
 			<tr>
 				<td bgcolor="#eeeebb"><strong>Note:</strong><br CLEAR="ALL" />
-					BeanShell 3.0 is not on Maven Central yet. To embed a 3.0 beta,
-					put its JAR from
-					<a href="https://github.com/beanshell/beanshell/releases">GitHub releases</a>
-					in your classpath, or check out its tag and run
-					<code>mvn install</code> to put it in your local Maven repository.
-					3.0.0b1 was built as <code>org.beanshell:bsh</code>; later 3.0
-					builds use <code>io.github.beanshell</code>, the groupId BeanShell
-					2.1.1 is published under on Maven Central.
+					BeanShell 3.0 is on Maven Central as <code>io.github.beanshell:bsh</code>.
+					The 3.0.0b1 JAR on GitHub releases was built as <code>org.beanshell:bsh</code>;
+					on Central it is under <code>io.github.beanshell</code> too.
 				</td>
 			</tr>
 		</table>
